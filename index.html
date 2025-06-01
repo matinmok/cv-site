@@ -25,8 +25,26 @@
         }
         body {
             font-family: 'Vazir', sans-serif;
-            background: linear-gradient(135deg, #1e3a8a, #3b82f6);
             color: #1f2937;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+        }
+        .background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: linear-gradient(45deg, #0f172a, #1e293b);
+        }
+        canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
         }
         .section-header {
             position: relative;
@@ -40,7 +58,7 @@
             right: 0;
             width: 50%;
             height: 3px;
-            background: #3b82f6;
+            background: #60a5fa;
         }
         .timeline-item {
             position: relative;
@@ -54,7 +72,7 @@
             top: 0;
             width: 10px;
             height: 10px;
-            background: #3b82f6;
+            background: #60a5fa;
             border-radius: 50%;
         }
         .timeline-item::after {
@@ -64,25 +82,25 @@
             top: 1rem;
             bottom: -2rem;
             width: 2px;
-            background: #bfdbfe;
+            background: #93c5fd;
         }
         .timeline-item:last-child::after {
             display: none;
         }
         .skill-bar {
             height: 8px;
-            background: #bfdbfe;
+            background: #93c5fd;
             border-radius: 4px;
             overflow: hidden;
         }
         .skill-level {
             height: 100%;
-            background: #3b82f6;
+            background: #60a5fa;
             border-radius: 4px;
             transition: width 0.6s ease;
         }
         .card {
-            background: white;
+            background: rgba(255, 255, 255, 0.95);
             border-radius: 1rem;
             box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
             transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -97,9 +115,95 @@
         .lang-btn:hover {
             transform: scale(1.1);
         }
+        .contact-fab {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: #60a5fa;
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            z-index: 100;
+        }
+        .contact-fab:hover {
+            transform: scale(1.1);
+            background: #3b82f6;
+        }
+        .contact-options {
+            position: fixed;
+            bottom: 90px;
+            right: 20px;
+            display: none;
+            flex-direction: column;
+            gap: 10px;
+            z-index: 100;
+        }
+        .contact-option {
+            background: #60a5fa;
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+        }
+        .contact-option:hover {
+            transform: scale(1.1);
+            background: #3b82f6;
+        }
+        @media (max-width: 640px) {
+            .text-4xl {
+                font-size: 1.75rem;
+            }
+            .text-2xl {
+                font-size: 1.25rem;
+            }
+            .text-xl {
+                font-size: 1.1rem;
+            }
+            .text-lg {
+                font-size: 0.95rem;
+            }
+            .p-8 {
+                padding: 1rem;
+            }
+            .space-x-6 > :not([hidden]) ~ :not([hidden]) {
+                margin-right: 1rem;
+            }
+            .timeline-item {
+                padding-right: 2rem;
+            }
+            .grid-cols-1 {
+                grid-template-columns: 1fr;
+            }
+            .contact-fab {
+                width: 50px;
+                height: 50px;
+            }
+            .contact-options {
+                bottom: 70px;
+            }
+            .contact-option {
+                width: 40px;
+                height: 40px;
+            }
+        }
     </style>
 </head>
 <body class="min-h-screen flex items-center justify-center p-4">
+    <div class="background">
+        <canvas id="bgCanvas"></canvas>
+    </div>
     <div class="card max-w-4xl w-full p-8">
         <!-- Language Toggle -->
         <div class="flex justify-start mb-6">
@@ -119,7 +223,7 @@
                 <a href="mailto:matinmok02@gmail.com" class="text-blue-600 hover:text-blue-800">
                     <i class="fas fa-envelope text-2xl"></i>
                 </a>
-                <a href="https://brandicoo.ir" target="_blank" class="text-blue-600 hover:text-blue-800">
+                <a href="https://brandiico.ir" target="_blank" class="text-blue-600 hover:text-blue-800">
                     <i class="fas fa-globe text-2xl"></i>
                 </a>
             </div>
@@ -144,8 +248,8 @@
             <div class="timeline-item">
                 <h3 class="text-xl font-medium text-blue-600 en-content hidden">CEO, Brandico</h3>
                 <h3 class="text-xl font-medium text-blue-600 fa-content">مدیرعامل، برندیکو</h3>
-                <p class="text-gray-600 en-content hidden">Brandico | July 2020 - Present (5 years)</p>
-                <p class="text-gray-600 fa-content">برندیکو | تیر ۱۳۹۹ - تاکنون (۵ سال)</p>
+                <p class="text-gray-600 en-content hidden">Brandico | 2018 - Present (8 years)</p>
+                <p class="text-gray-600 fa-content">برندیکو | ۱۳۹۷ - تاکنون (۸ سال)</p>
                 <p class="text-gray-700 en-content hidden">Kerman, Kerman Province, Iran</p>
                 <p class="text-gray-700 fa-content">کرمان، استان کرمان، ایران</p>
             </div>
@@ -272,7 +376,7 @@
         </section>
 
         <!-- Contact -->
-        <section class="text-center">
+        <section class="text-center mb-16">
             <h2 class="text-2xl font-semibold section-header en-content hidden">Contact</h2>
             <h2 class="text-2xl font-semibold section-header fa-content">تماس</h2>
             <p class="text-gray-700 en-content hidden">Feel free to reach out for collaboration or opportunities:</p>
@@ -284,7 +388,118 @@
         </section>
     </div>
 
+    <!-- Floating Action Button -->
+    <div class="contact-fab" id="contactFab">
+        <i class="fas fa-comment-dots text-2xl"></i>
+    </div>
+    <div class="contact-options" id="contactOptions">
+        <a href="https://wa.me/989227334601" target="_blank" class="contact-option">
+            <i class="fab fa-whatsapp text-xl"></i>
+        </a>
+        <a href="https://t.me/+989375249565" target="_blank" class="contact-option">
+            <i class="fab fa-telegram text-xl"></i>
+        </a>
+        <a href="tel:+989227334601" class="contact-option">
+            <i class="fas fa-phone text-xl"></i>
+        </a>
+    </div>
+
     <script>
+        const canvas = document.getElementById('bgCanvas');
+        const ctx = canvas.getContext('2d');
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        let particles = [];
+        const particleCount = 80;
+        const mouse = { x: 0, y: 0 };
+
+        class Particle {
+            constructor() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height;
+                this.size = Math.random() * 6 + 2;
+                this.speedX = Math.random() * 2 - 1;
+                this.speedY = Math.random() * 2 - 1;
+                this.hue = Math.random() * 360;
+                this.color = `hsl(${this.hue}, 70%, 60%)`;
+                this.glow = 0;
+            }
+
+            update() {
+                this.x += this.speedX;
+                this.y += this.speedY;
+
+                const dist = Math.hypot(this.x - mouse.x, this.y - mouse.y);
+                if (dist < 120) {
+                    this.size += 0.3;
+                    this.glow = Math.min(1, 1 - dist / 120);
+                    this.speedX += (mouse.x - this.x) * 0.008;
+                    this.speedY += (mouse.y - this.y) * 0.008;
+                } else if (this.size > 2) {
+                    this.size -= 0.1;
+                    this.glow -= 0.05;
+                }
+                this.glow = Math.max(0, this.glow);
+
+                if (this.x < 0 || this.x > canvas.width) this.speedX *= -1;
+                if (this.y < 0 || this.y > canvas.height) this.speedY *= -1;
+
+                this.hue += 1;
+                this.color = `hsl(${this.hue}, 70%, 60%)`;
+            }
+
+            draw() {
+                ctx.save();
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fillStyle = this.color;
+                ctx.shadowBlur = 20 * this.glow;
+                ctx.shadowColor = this.color;
+                ctx.fill();
+                ctx.restore();
+            }
+        }
+
+        for (let i = 0; i < particleCount; i++) {
+            particles.push(new Particle());
+        }
+
+        function animate() {
+            ctx.fillStyle = 'rgba(15, 23, 42, 0.1)';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            for (let i = 0; i < particles.length; i++) {
+                particles[i].update();
+                particles[i].draw();
+                for (let j = i; j < particles.length; j++) {
+                    const dist = Math.hypot(particles[i].x - particles[j].x, particles[i].y - particles[j].y);
+                    if (dist < 120) {
+                        ctx.save();
+                        ctx.beginPath();
+                        ctx.strokeStyle = `rgba(96, 165, 250, ${1 - dist / 120})`;
+                        ctx.lineWidth = 1.5;
+                        ctx.moveTo(particles[i].x, particles[i].y);
+                        ctx.lineTo(particles[j].x, particles[j].y);
+                        ctx.stroke();
+                        ctx.restore();
+                    }
+                }
+            }
+            requestAnimationFrame(animate);
+        }
+
+        animate();
+
+        window.addEventListener('mousemove', (e) => {
+            mouse.x = e.clientX;
+            mouse.y = e.clientY;
+        });
+
+        window.addEventListener('resize', () => {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        });
+
         const faButton = document.getElementById('lang-fa');
         const enButton = document.getElementById('lang-en');
         const faContents = document.querySelectorAll('.fa-content');
@@ -311,6 +526,12 @@
             faButton.classList.remove('bg-blue-600', 'text-white');
             enButton.classList.add('bg-blue-600', 'text-white');
             enButton.classList.remove('bg-gray-300', 'text-gray-800');
+        });
+
+        const contactFab = document.getElementById('contactFab');
+        const contactOptions = document.getElementById('contactOptions');
+        contactFab.addEventListener('click', () => {
+            contactOptions.style.display = contactOptions.style.display === 'flex' ? 'none' : 'flex';
         });
     </script>
 </body>
