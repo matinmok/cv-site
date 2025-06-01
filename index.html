@@ -1,777 +1,317 @@
 <!DOCTYPE html>
-<html>
-    <head>
-        <title>
-            Aagam Portfolio Site
-        </title>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width,initial-scale=1">
-        <link rel="icon" type="image/x-icon" href="./images/logo.jpg">
-        <!----CSS---->
-        <link rel="stylesheet" href="css/style.css" type="text/css">
-        <link rel="stylesheet" href="css/pink.css" type="text/css">
-
-        <link rel="stylesheet" class="alt-style" title="pink" href="./css/pink.css" type="text/css">
-        <link rel="stylesheet" class="alt-style" title="blue" href="./css/blue.css" type="text/css">
-        <link rel="stylesheet" class="alt-style" title="yellow" href="./css/yellow.css" type="text/css">
-        <link rel="stylesheet" class="alt-style" title="orange" href="./css/orange.css" type="text/css">
-        <link rel="stylesheet" class="alt-style" title="green" href="./css/green.css" type="text/css">
-
-        <link rel="stylesheet" href="./css/styleSwitcher.css" type="text/css">
-        <link rel="stylesheet" 
-        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.0/css/all.min.css"
-        integrity="sha512-10/jx2EXwxxWqCLX/hHth/vu2KY3jCF70dCQB8TSgNjbCVAC/8vai53GfMDrO2Emgwccf2pJqxct9ehpzG+MTw==" 
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
-
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,500;0,700;1,900&display=swap" rel="stylesheet">
-        <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
-    </head>
-
-    <div class="preloader">
-    <div class="loader">
-        <div class="rocket">
-          <i class="fa-solid fa-rocket"></i>
-          <i class="fa-solid fa-fire"></i>
-          <i class="fa-solid fa-cloud" style="--i:0"></i>
-          <i class="fa-solid fa-cloud" style="--i:1"></i>
-          <i class="fa-solid fa-cloud" style="--i:2"></i>
-          <i class="fa-solid fa-cloud" style="--i:3"></i>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>متین مختاری - رزومه</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        @font-face {
+            font-family: 'Vazir';
+            src: url('https://cdn.jsdelivr.net/gh/rastikerdar/vazir-font/dist/Vazir.woff2') format('woff2'),
+                 url('https://cdn.jsdelivr.net/gh/rastikerdar/vazir-font/dist/Vazir.woff') format('woff');
+            font-weight: normal;
+            font-style: normal;
+            font-display: swap;
+        }
+        @font-face {
+            font-family: 'Vazir';
+            src: url('https://cdn.jsdelivr.net/gh/rastikerdar/vazir-font/dist/Vazir-Bold.woff2') format('woff2'),
+                 url('https://cdn.jsdelivr.net/gh/rastikerdar/vazir-font/dist/Vazir-Bold.woff') format('woff');
+            font-weight: bold;
+            font-style: normal;
+            font-display: swap;
+        }
+        body {
+            font-family: 'Vazir', sans-serif;
+            background: linear-gradient(135deg, #1e3a8a, #3b82f6);
+            color: #1f2937;
+        }
+        .section-header {
+            position: relative;
+            display: inline-block;
+            margin-bottom: 1.5rem;
+        }
+        .section-header::after {
+            content: '';
+            position: absolute;
+            bottom: -0.5rem;
+            right: 0;
+            width: 50%;
+            height: 3px;
+            background: #3b82f6;
+        }
+        .timeline-item {
+            position: relative;
+            padding-right: 2.5rem;
+            margin-bottom: 2rem;
+        }
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            right: 0.75rem;
+            top: 0;
+            width: 10px;
+            height: 10px;
+            background: #3b82f6;
+            border-radius: 50%;
+        }
+        .timeline-item::after {
+            content: '';
+            position: absolute;
+            right: 0.9rem;
+            top: 1rem;
+            bottom: -2rem;
+            width: 2px;
+            background: #bfdbfe;
+        }
+        .timeline-item:last-child::after {
+            display: none;
+        }
+        .skill-bar {
+            height: 8px;
+            background: #bfdbfe;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+        .skill-level {
+            height: 100%;
+            background: #3b82f6;
+            border-radius: 4px;
+            transition: width 0.6s ease;
+        }
+        .card {
+            background: white;
+            border-radius: 1rem;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+        }
+        .lang-btn {
+            transition: all 0.3s ease;
+        }
+        .lang-btn:hover {
+            transform: scale(1.1);
+        }
+    </style>
+</head>
+<body class="min-h-screen flex items-center justify-center p-4">
+    <div class="card max-w-4xl w-full p-8">
+        <!-- Language Toggle -->
+        <div class="flex justify-start mb-6">
+            <button id="lang-fa" class="lang-btn bg-blue-600 text-white px-4 py-2 rounded-lg mx-2 hover:bg-blue-800">فارسی</button>
+            <button id="lang-en" class="lang-btn bg-gray-300 text-gray-800 px-4 py-2 rounded-lg mx-2 hover:bg-gray-500 hover:text-white">English</button>
         </div>
-        <span><i></i></span>
-      </div>
-    </div> 
 
-
-    <body class="dark">
-        <!---main container-->
-        <div class="main-container">
-            <div class="aside">
-               <div class="asider-inner">
-                <div class="logo">
-                    <a href="#">Aagam</a>
-                </div>
-
-                <div class="nav-toggle"> 
-                    <span>
-                        
-                    </span>
-                </div>
-
-                <ul class="nav">
-                    <li>
-                        <a href="#home" class="active"><i class="fa fa-home" aria-hidden="true"></i>Home</a>
-                    </li>
-                    <li>
-                        <a href="#about"><i class="fa fa-user" aria-hidden="true"></i>About</a>
-                    </li>
-                    <li>
-                        <a href="#blog"><i class="fa fa-product-hunt" aria-hidden="true"></i>Projects</a>
-                    </li>
-                    <li>
-                        <a href="#service"><i class="fa fa-list" aria-hidden="true"></i>Domains</a>
-                    </li>
-                    <li>
-                        <a href="#portfolio"><i class="fa fa-certificate" aria-hidden="true"></i>Certificate</a>
-                    </li>
-                    <li>
-                        <a href="#contact"><i class="fa fa-comment" aria-hidden="true"></i>Contact</a>
-                    </li>
-
-                </ul>
-
-                <div class="copyright-text">
-                    &copy; 2023 | Aagam@gl01
-                </div>
-              </div>
+        <!-- Header -->
+        <header class="text-center mb-8">
+            <h1 class="text-4xl font-bold text-blue-600">متین مختاری</h1>
+            <p class="text-lg text-gray-600 mt-2 en-content hidden">Digital Marketer, Web/App Developer & Network Security Specialist</p>
+            <p class="text-lg text-gray-600 mt-2 fa-content">بازاریاب دیجیتال، توسعه‌دهنده وب/اپلیکیشن و متخصص امنیت شبکه</p>
+            <div class="flex justify-center space-x-6 mt-4">
+                <a href="https://www.linkedin.com/in/matinmokhtar" target="_blank" class="text-blue-600 hover:text-blue-800">
+                    <i class="fab fa-linkedin text-2xl"></i>
+                </a>
+                <a href="mailto:matinmok02@gmail.com" class="text-blue-600 hover:text-blue-800">
+                    <i class="fas fa-envelope text-2xl"></i>
+                </a>
+                <a href="https://brandicoo.ir" target="_blank" class="text-blue-600 hover:text-blue-800">
+                    <i class="fas fa-globe text-2xl"></i>
+                </a>
             </div>
-
-            <div class="main-content">
-                <section class="home section active" id="home">
-                    <div class="container">
-                        <div class="intro">
-                            <img src="./images/newImageMe.jpg" alt="profile" class="shadow-dark">
-                            <h1>Aagam Jain</h1>
-                            <p>Full stack developer || Pre Final undergraduate</p>
-                            <div class="social">
-                               <a href="https://www.linkedin.com/in/aagam-jain-gl01/" target="_blank"><i class="fa fa-linkedin" aria-hidden="true"></i></a>
-                               <a href="https://www.instagram.com/jain.aagam.124/" target="_blank"><i class="fa fa-instagram" aria-hidden="true"></i></a>
-                               <a href="https://github.com/getlost01" target="_blank"><i class="fa fa-github" aria-hidden="true"></i></a>
-                               <a href="https://www.stopstalk.com/user/profile/Getlost01" target="_blank"><i class="fa fa-ban" aria-hidden="true"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-
-
-
-
-
-                <section class="about section" id="about">
-                    <div class="container">
-                        <div class="row">
-                            <div class="section-title padd-15">
-                               <h2>About me</h2>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="about-con padd-15">
-                                <div class="row">
-                                    <div class="about-text padd-15">
-                                        <h3>
-                                            I'm Aagam Jain and <span> Potential Learner (^_^)</span>
-                                        </h3>
-                                        <p>
-                                            Hi! My name is Aagam Jain. I'm a very dedicated and hardworking person who always thrives working on end-to-end products.
-                                             With my experience and knowledge, I learn many skills and make many successful projects.
-                                             I enjoyed every step of creation, learning, development, and collaboration.
-                                        </p>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="personal-info padd-15">
-                                        <div class="row">
-                                            <div class="info-item padd-15">
-                                                <p>Degree Persuing: <span> B-Tech C.S.E </span></p>
-                                            </div>
-                                            <div class="info-item padd-15">
-                                                <p>Graduation Year: <span> 2024 </span></p>
-                                            </div>
-                                            <div class="info-item padd-15">
-                                                <p>Age: <span> 21 </span></p>
-                                            </div>
-                                            <div class="info-item padd-15">
-                                                <p>City: <span> Lalitpur (U.P) </span></p>
-                                            </div>
-                                            <div class="info-item padd-15">
-                                                <p>E-mail: <span> aagamjain573 @gmail.com </span></p>
-                                            </div>
-                                            <div class="info-item padd-15">
-                                                <p>FreeLance / Intern: <span> Available </span></p>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="buttons">
-                                                <a href="https://docs.google.com/document/d/1kqJ16duGprASGlyAyKkT2o8Bh09reb6WLNxZLC_KqbY/edit?usp=sharing" target="_blank" class="btn">Download CV</a>
-                                                <a href="#contact" class="btn hire-me" data-section-index="1">Hire Me</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="skills padd-15">
-                                        <div class="row">
-                                            <div class="skill-items padd-15">
-                                                <h5>Front End(Bootstrap, React, and Javascript)</h5>
-                                                <div class="progress">
-                                                    <div class="progress-in" style="width: 90%"></div>
-                                                </div>
-                                            </div>
-                                            <div class="skill-items padd-15">
-                                                <h5>Back End(NodeJs, Express, SQL, MongoDB, ...)</h5>
-                                                <div class="progress">
-                                                    <div class="progress-in" style="width: 95%"></div>
-                                                </div>
-                                            </div>
-                                            <div class="skill-items padd-15">
-                                                <h5>Data Structure and Algorithm</h5>
-                                                <div class="progress">
-                                                    <div class="progress-in" style="width: 85%"></div>
-                                                </div>
-                                            </div>
-                                            <div class="skill-items padd-15">
-                                                <h5>Competitive Programming</h5>
-                                                <div class="progress">
-                                                    <div class="progress-in" style="width: 85%"></div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="row">
-                                    <div class="education padd-15">
-                                         <h3 class="title">Education</h3>
-                                         <div class="row">
-                                           <div class="timeline-box">
-                                             <div class="timeline shadow-dark">
-                                                <!-- Item 1 -->
-                                              <div class="timeline-item">
-                                                 <div class="circle-dot"></div>
-                                                 <h6 class="timeline-date">
-                                                    <i class="fa fa-calendar" aria-hidden="true"></i> 2020 - Present
-                                                 </h6>
-                                                 <h4 class="timeline-title">Bachelor of Technology in Computer Science</h4>
-                                                 <p class="timeline-text">Currently, I am a Pre Final undergraduate at <a href="http://csjmu.ac.in/school-of-engineering-and-technology" target="_blank"><span>UIET CSJM 
-                                                    University Kanpur</span></a> , here I am studying Computer Science to pursuing my technical degree in the subject of Engineering. </p>
-                                              </div>
-                                                <!-- Item 2 -->
-                                            <div class="timeline-item">
-                                                <div class="circle-dot"></div>
-                                                <h6 class="timeline-date">
-                                                   <i class="fa fa-calendar" aria-hidden="true"></i> 2007 - 2019 
-                                                </h6>
-                                                <h4 class="timeline-title">Primary and Secondary Education</h4>
-                                                <p class="timeline-text">I have completed all my primary and secondary from <a href="http://sdslalitpur.org/" target="_blank"><span>St. Dominic Savio convent
-                                                    School Lalitpur</span></a> through ICSE Board with my subjects of P.C.M & CS. </p>
-                                             </div>
-                                           </div>
-                                           </div>
-                                        </div>
-                                    </div>
-                                    <div class="experience padd-15">
-                                        <h3 class="title">Experience</h3>
-                                        <div class="row">
-                                            <div class="timeline-box">
-                                              <div class="timeline shadow-dark">
-                                                 <!-- Item 1 -->
-                                               <div class="timeline-item">
-                                                  <div class="circle-dot"></div>
-                                                  <h6 class="timeline-date">
-                                                     <i class="fa fa-calendar" aria-hidden="true"></i> July 2021 - Jan 2022
-                                                  </h6>
-                                                  <h4 class="timeline-title"> Codechef UIET Kanpur Club </h4>
-                                                  <p class="timeline-text">I have completed a 6-month tenure as <a href="https://drive.google.com/file/d/151oKJxcRM2oRaJBzFfv3NCact62H9kq5" target="_blank"><span>Club leader</span></a>  of the Codechef UIET Kanpur chapter and as president, I have hosted 5+ coding contests and 10+ virtual events. </p>
-                                               </div>
-                                                 <!-- Item 2 -->
-                                             <div class="timeline-item">
-                                                 <div class="circle-dot"></div>
-                                                 <h6 class="timeline-date">
-                                                    <i class="fa fa-calendar" aria-hidden="true"></i> Jul 2021 - Dec 2021
-                                                 </h6>
-                                                 <h4 class="timeline-title">E-Cell IIT Bombay</h4>
-                                                 <p class="timeline-text">I have completed my 6-month tenure with E-Cell IIT Bombay join as a<a href="https://drive.google.com/file/d/1HxX9pfWKnmOu65i4T4zXjJJEmOv6Emi0/view" target="_blank"><span> 
-                                                    Campus Representative </span></a> program, here I promote and learn much more about Entrepreneurship and how to begin your StartUp. </p>
-                                              </div>
-                                               <!-- Item 2 -->
-                                             <div class="timeline-item">
-                                                <div class="circle-dot"></div>
-                                                <h6 class="timeline-date">
-                                                   <i class="fa fa-calendar" aria-hidden="true"></i> Jul 2021 - Nov 2021
-                                                </h6>
-                                                <h4 class="timeline-title">Coding Ninja</h4>
-                                                <p class="timeline-text">I have complete my 5-month tenure with Coding Ninja join as a <a href="https://drive.google.com/file/d/1sEwl7MsHv4ktfawxL6MMUc7nWglt8nIU/view" target="_blank"><span> 
-                                                    Campus Ambassador </span></a> program, with the help of Coding Ninja I try to influence the coding culture in our college.</p>
-                                             </div>
-                                            </div>
-                                            </div>
-                                         </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-
-                
-
-
-
-                <section class="services section" id="service">
-                    <div class="container">
-                        <div class="row">
-                            <div class="section-title padd-15">
-                               <h2>Domains</h2>
-                            </div>
-                        </div>
-                        <div class="row">
-
-                            <div class="services-item padd-15">
-                                <div class="service-item-inner">
-                                    <div class="icon"><i class="fa fa-desktop" aria-hidden="true"></i></div>
-                                    <h4>Full stack Web Development</h4>
-                                    <p><strong>Front End Development</strong></p>
-                                    <p>Tailwind CSS, Bootstrap, React, NextJS</p>
-                                    <p><strong>Backend End Development</strong></p>
-                                    <p>NodeJS, ExpressJS, Postgre SQL, Mongoose, REST APIs, NestJS </p>
-                                    <a href="https://github.com/getlost01?tab=repositories" target="_blank"><span class="outer-links">View Projects</span></a>
-                                </div>
-                            </div>
-
-                            <div class="services-item padd-15">
-                                <div class="service-item-inner">
-                                    <div class="icon"><i class="fa fa-object-group" aria-hidden="true"></i></div>
-                                    <h4>Data Structure and Algorithms</h4>
-                                    <p>Algorithmic-Toolbox : <a href="https://github.com/getlost01/ALGORITHMIC-TOOLBOX" target="_blank"><span class="outer-links">My Codes</span></a></p>
-                                    <p>College-DSA Repo : <a href="https://github.com/getlost01/DSA" target="_blank"><span class="outer-links">My Codes</span></a></p>
-                                    <p>College-DAA Repo : <a href="https://github.com/getlost01/DAA" target="_blank"><span class="outer-links">My Codes</span></a></p>
-                                </div>
-                            </div>
-
-                            <div class="services-item padd-15">
-                                <div class="service-item-inner">
-                                    <div class="icon"><i class="fa fa-code" aria-hidden="true"></i></div>
-                                    <h4>Competitive Programming</h4>
-                                    <p>CodeChef : <a href="https://www.codechef.com/users/getlost01" target="_blank"><span class="outer-links">Getlost01</span></a><br>
-                                    CodeForces : <a href="https://codeforces.com/profile/getlost01" target="_blank"><span class="outer-links">Getlost01</span></a> <br>
-                                    HackerRank : <a href="https://www.hackerrank.com/getlost01" target="_blank"><span class="outer-links">Getlost01</span></a></p>
-                                </div>
-                            </div>
-
-                            <div class="services-item padd-15">
-                                <div class="service-item-inner">
-                                    <div class="icon"><i class="fa fa-file-code-o" aria-hidden="true"></i></div>
-                                    <h4>Languages</h4>
-                                    <p>Programming Languages : <br> <a href="https://github.com/getlost01" target="_blank"><span class="outer-links"> C / C++ / Java </span></a></p>
-                                    <p>Developement Languages : <br><a href="https://github.com/getlost01" target="_blank"><span class="outer-links">HTML / CSS / Javascript / PHP / SQL </span></a></p>
-                                </div>
-                            </div>
-
-                            <div class="services-item padd-15">
-                                <div class="service-item-inner">
-                                    <div class="icon"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></div>
-                                    <h4>Blog Writing</h4>
-                                    <p>CodeChef Blogs : <a href="https://discuss.codechef.com/u/getlost01" target="_blank"><span class="outer-links">My Blogs</span></a></p>
-                                    <p>BlogSpot Blogs : <a href="https://learningcompprogramming.blogspot.com" target="_blank"><span class="outer-links">My Blogs</span></a></p>
-                                </div>
-                            </div>
-
-                            <div class="services-item padd-15">
-                                <div class="service-item-inner">
-                                    <div class="icon"><i class="fa fa-users" aria-hidden="true"></i></div>
-                                    <h4>Community Management</h4>
-                                    <p>CodeChef UIET-K : <a href="https://www.codechef.com/campus_chapter/CodeChef_UIET_Kanpur_Chapter" target="_blank"><span class="outer-links">President</span></a></p>
-                                    <p>E-Cell IIT Bombay: <a href="https://www.ecell.in/certificate/certi?email=aagamjain573@gmail.com&year=2021-2022" target="_blank"><span class="outer-links">Campus Manager</span></a></p>
-                                </div>
-                            </div>
-                        </div>
-                    </div> 
-                </section>
-
-
-                <section class="Portfolio services section" id="portfolio">
-                    <div class="container">
-                        <div class="row">
-                            <div class="section-title padd-15">
-                               <h2>Certificate</h2>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="services-item padd-15">
-                                <div class="service-item-inner">
-                                    <div class="icon"><i class="fa fa-first-order" aria-hidden="true"></i></div>
-                                    <h4>ICPC</h4>
-                                    <p>Asia Amritapuri-2021 : <a href="https://drive.google.com/file/d/1-YZRHyLj0wBnMbw6xYK0HEoM8eWnnaz8/view?usp=sharing" target="_blank"><span class="outer-links">View Certificate</span></a></p>
-                                    <p>Asia Kanpur-2022 : <a href="https://drive.google.com/file/d/16C7QehaFL3IvWsP9zYYMJTstEXJqtgDZ/view" target="_blank"><span class="outer-links">View Certificate</span></a></p>
-                                </div>
-                            </div>
-
-                            <div class="services-item padd-15">
-                                <div class="service-item-inner">
-                                    <div class="icon"><i class="fa fa-first-order" aria-hidden="true"></i></div>
-                                    <h4>SnacKDown</h4>
-                                    <p>SnacKDown-2021 : <a href="https://drive.google.com/file/d/1K-nm4O1k7FHf_Fl3mPUIW8AqXsZcQoOe/view" target="_blank"><span class="outer-links">View Certificate</span></a></p>
-                                </div>
-                            </div>
-
-
-                            <div class="services-item padd-15">
-                                <div class="service-item-inner">
-                                    <div class="icon"><i class="fa fa-window-restore" aria-hidden="true"></i></div>
-                                    <h4>Front End Development</h4>
-                                    <p>Coursera : <a href="https://coursera.org/share/7bdc5970ab3afe25a7cad201ac4518ad" target="_blank"><span class="outer-links">View Certificate</span></a></p>
-                                </div>
-                            </div>
-
-
-                            <div class="services-item padd-15">
-                                <div class="service-item-inner">
-                                    <div class="icon"><i class="fa fa-window-restore" aria-hidden="true"></i></div>
-                                    <h4>Algorithmic-Toolbox</h4>
-                                    <p>Coursera : <a href="https://coursera.org/share/69b1e85149800c6adf3e3c87f6a38df7" target="_blank"><span class="outer-links">View Certificate</span></a></p>
-                                </div>
-                            </div>
-
-
-                            <div class="services-item padd-15">
-                                <div class="service-item-inner">
-                                    <div class="icon"><i class="fa fa-code" aria-hidden="true"></i></div>
-                                    <h4>Problem Solving</h4>
-                                    <p>intermediate : <a href="https://www.hackerrank.com/certificates/d5dbaae46173" target="_blank"><span class="outer-links">View Certificate</span></a></p>
-                                    <p>Basic : <a href="https://www.hackerrank.com/certificates/3c729a3928f4" target="_blank"><span class="outer-links">View Certificate</span></a></p>
-                                </div>
-                            </div>
-
-                        
-                            <div class="services-item padd-15">
-                                <div class="service-item-inner">
-                                    <div class="icon"><i class="fa fa-file-code-o" aria-hidden="true"></i></div>
-                                    <h4>Languages</h4>
-                                    <p>Java : <a href="https://www.hackerrank.com/certificates/809f524954e5" target="_blank"><span class="outer-links">View Certificate</span></a></p>
-                                    <p>Javascript : <a href="https://www.hackerrank.com/certificates/d2dcdd2cfbda" target="_blank"><span class="outer-links">View Certificate</span></a></p>
-                                </div>
-                            </div>
-
-
-                            <div class="services-item padd-15">
-                                <div class="service-item-inner">
-                                    <div class="icon"><i class="fa fa-file-code-o" aria-hidden="true"></i></div>
-                                    <h4>Framework / Libraries</h4>
-                                    <p>React : <a href="https://www.hackerrank.com/certificates/5b5900b6f9e8" target="_blank"><span class="outer-links">View Certificate</span></a></p>
-                                </div>
-                            </div>
-
-
-                            <div class="services-item padd-15">
-                                <div class="service-item-inner">
-                                    <div class="icon"><i class="fa fa-users" aria-hidden="true"></i></div>
-                                    <h4>Community Work</h4>
-                                    <p>CodeChef UIET-K : <a href="https://drive.google.com/file/d/151oKJxcRM2oRaJBzFfv3NCact62H9kq5" target="_blank"><span class="outer-links">View Certificate</span></a></p>
-                                    <p>E-Cell IIT Bombay : <a href="https://drive.google.com/file/d/1HxX9pfWKnmOu65i4T4zXjJJEmOv6Emi0/view?usp=sharing" target="_blank"><span class="outer-links">View Certificate</span></a></p>
-                                    <p>Coding Ninja : <a href="https://drive.google.com/file/d/1sEwl7MsHv4ktfawxL6MMUc7nWglt8nIU/view?usp=sharing" target="_blank"><span class="outer-links">View Certificate</span></a></p>
-                                </div>
-                            </div>
-                        </div>
-                    </div> 
-                </section>
-
-
-
-                <section class="blog section" id="blog">
-                    <div class="container">
-                        <div class="row">
-                            <div class="section-title padd-15">
-                               <h2>Latest Projects</h2>
-                            </div>
-                        </div>
-                        <div class="row">
-
-
-                            <div class="blog-item padd-15">
-                                <div class="blog-item-inner shadow-dark">
-                                    <div class="blog-img">
-                                        <img src="images/postman.png" alt="blog">
-                                        <div class="blog-date">
-                                            26 Dec 2022
-                                        </div>
-                                    </div>
-                                    <div class="blog-info">
-                                        <h4 class="blog-title"> Postgre-APIs-App </h4>
-                                        <p class="blog-discription">TThis is a Node.js Blog REST APIs App web application that allows users to create, read, update, and delete (CRUD) blog posts.
-                                            This is the assignment given by eazypg.in for a fullstack intern.</p>
-                                        <p class="blog-tags"> Visit : <a href="https://documenter.getpostman.com/view/25076245/2s8Z6vaEwE">Here</a> </p>
-                                        <p class="blog-tags"> Tags : <a href="https://github.com/getlost01/Postgre-APIs-App">NodeJS, Express Router, PostgreSQL, Javascript, Postman</a> </p>
-                                    </div>
-                                </div>
-                            </div>
-
-
-                            <div class="blog-item padd-15">
-                                <div class="blog-item-inner shadow-dark">
-                                    <div class="blog-img">
-                                        <img src="images/inventory app.png" alt="blog">
-                                        <div class="blog-date">
-                                            13 Dec 2022
-                                        </div>
-                                    </div>
-                                    <div class="blog-info">
-                                        <h4 class="blog-title">Inventory App</h4>
-                                        <p class="blog-discription">This is the react inventory management application for managing dynamic inventory, on the Product page.
-                                            This is the assignment given by wendor for a fullstack intern.  </p>
-                                        <p class="blog-tags"> Visit : <a href="https://inventoryapp-aagam.netlify.app/">Here</a> </p>
-                                        <p class="blog-tags">Tags : <a href="https://github.com/getlost01/InventoryAppFrontend">NodeJS, React, Mongoose, CORS, JWT, BCRYPT Javascript, CSS</a>  </p>
-                                    </div>
-                                </div>
-                            </div>
-
-
-                            <div class="blog-item padd-15">
-                                <div class="blog-item-inner shadow-dark">
-                                    <div class="blog-img">
-                                        <img src="images/uietconnect.png" alt="blog">
-                                        <div class="blog-date">
-                                            Mid-Nov 2022
-                                        </div>
-                                    </div>
-                                    <div class="blog-info">
-                                        <h4 class="blog-title"> UIET Connect</h4>
-                                        <p class="blog-discription">To connect with the UIET alums community and seniors, this platform support juniors in getting news & updates on alums and facilitates them to interact with alums.</p>
-                                        <p class="blog-tags"> Visit : <a href="https://uietconnect.onrender.com/" target="_blank"> Link </a> </p>
-                                        <p class="blog-tags"> Tags : <a href="https://github.com/getlost01/connectuiet" target="_blank"> NodeJS, React, Mongoose, CORS, JWT, BCRYPT Javascript, CSS </a> </p>
-                                    </div>
-                                </div>
-                            </div>
-
-
-                            <div class="blog-item padd-15">
-                                <div class="blog-item-inner shadow-dark">
-                                    <div class="blog-img">
-                                        <img src="images/votingms.jpeg" alt="blog">
-                                        <div class="blog-date">
-                                            Mid-Nov 2022
-                                        </div>
-                                    </div>
-                                    <div class="blog-info">
-                                        <h4 class="blog-title"> Voting Managment System</h4>
-                                        <p class="blog-discription"> This DBMS project have developed on PHP, MYSql, and web technologies. For college project.</p>
-                                        <p class="blog-tags"> Visit : <a href="http://localhost/dashboard">Link</a> </p>
-                                        <p class="blog-tags"> Tags : <a href="https://github.com/getlost01/VotingManagmentSystem">Javascript, CSS, HTML, PHP, MYSql, Apache server, PHP Admin</a> </p>
-                                    </div>
-                                </div>
-                            </div>
-
-
-                            <div class="blog-item padd-15">
-                                <div class="blog-item-inner shadow-dark">
-                                    <div class="blog-img">
-                                        <img src="images/mealPlanner.png" alt="blog">
-                                        <div class="blog-date">
-                                            Mid-Aug 2022
-                                        </div>
-                                    </div>
-                                    <div class="blog-info">
-                                        <h4 class="blog-title"> Meal Planner </h4>
-                                        <p class="blog-discription">The meal planner is a simple diet and calories management web app, this helps users to find a specific amount of calories per day needed to consume.
-                                            This is the assignment given by evolv fit </p>
-                                        <p class="blog-tags"> Visit : <a href="https://famous-overalls-goat.cyclic.app/">Here </a> </p>
-                                        <p class="blog-tags"> Tags : <a href="https://github.com/getlost01/meal-planner-API">Html, CSS, Javascript, NodeJS, ExpressJS, Bootstrap, EJS, MongoDB, Heruko </a> </p>
-                                    </div>
-                                </div>
-                            </div>
-
-
-                            <div class="blog-item padd-15">
-                                <div class="blog-item-inner shadow-dark">
-                                    <div class="blog-img">
-                                        <img src="images/abitIcon.png" alt="blog">
-                                        <div class="blog-date">
-                                            Mid-July 2022
-                                        </div>
-                                    </div>
-                                    <div class="blog-info">
-                                        <h4 class="blog-title"> ABitShort </h4>
-                                        <p class="blog-discription">This is link shortner WEB Application, which can be used to perform link shortning operation. This application also provide custom link creation and password protection feature.</p>
-                                        <p class="blog-tags"> Visit : <a href="https://good-ruby-rhinoceros-shoe.cyclic.app/" target="_blank"> Link </a> </p>
-                                        <p class="blog-tags"> Tags : <a href="https://github.com/getlost01/linkshortner" target="_blank"> HTML , CSS , Bootstap , Javascript , nodeJS , expressJS , EJS , Mongoose Atlas </a> </p>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="blog-item padd-15">
-                                <div class="blog-item-inner shadow-dark">
-                                    <div class="blog-img">
-                                        <img src="images/cp calender.png" alt="blog">
-                                        <div class="blog-date">
-                                            1 June 2022
-                                        </div>
-                                    </div>
-                                    <div class="blog-info">
-                                        <h4 class="blog-title"> CP Contest Calendar </h4>
-                                        <p class="blog-discription">This extension is very useful for programmers who do Competitive Programming, this extension provides upcoming CP contest details of different platforms.</p>
-                                        <p class="blog-tags"> Visit : <a href="https://chrome.google.com/webstore/detail/cp-contest-calendar/nchadgecfkcdikollfdhgobmjoeaiegd">Here</a> </p>
-                                        <p class="blog-tags"> Tags : <a href="https://github.com/getlost01/cp-contest-calender"> Html, CSS, Javascript, Chrome Web Api, Clist API</a> </p>
-                                    </div>
-                                </div>
-                            </div>
-
-
-                            <div class="blog-item padd-15">
-                                <div class="blog-item-inner shadow-dark">
-                                    <div class="blog-img">
-                                        <img src="images/color picker.png" alt="blog">
-                                        <div class="blog-date">
-                                            17 April 2022
-                                        </div>
-                                    </div>
-                                    <div class="blog-info">
-                                        <h4 class="blog-title">Vibrant Color Dropper</h4>
-                                        <p class="blog-discription"> A Powerful Color Dropper Tool to extract Colors from a browser tab, and also save recent used colors. </p>
-                                        <p class="blog-tags"> Visit : <a href="https://chrome.google.com/webstore/detail/vibrant-color-dropper/fcekakhpgmlaihglgajajbceajnhlgfn">Here</a> </p>
-                                        <p class="blog-tags">Tags : <a href="https://github.com/getlost01/color-picker-updated">Html, CSS, Javascript, Chrome Web Api</a>  </p>
-                                    </div>
-                                </div>
-                            </div>
-
-
-                            <div class="blog-item padd-15">
-                                <div class="blog-item-inner shadow-dark">
-                                    <div class="blog-img">
-                                        <img src="images/coa.png" alt="blog">
-                                        <div class="blog-date">
-                                            Mid-may 2022
-                                        </div>
-                                    </div>
-                                    <div class="blog-info">
-                                        <h4 class="blog-title"> Basic Computer and Architecture Simulator</h4>
-                                        <p class="blog-discription">A Computer Organisation and Architecture project on basic computer functioning and visualization.</p>
-                                        <p class="blog-tags"> Visit : <a href="https://computer1-aagam.netlify.app/" target="_blank"> Link </a> </p>
-                                        <p class="blog-tags"> Tags : <a href="https://github.com/getlost01/computer1" target="_blank"> Javascript, COA logic, Html </a> </p>
-                                    </div>
-                                </div>
-                            </div>
-
-
-                            <div class="blog-item padd-15">
-                                <div class="blog-item-inner shadow-dark">
-                                    <div class="blog-img">
-                                        <img src="images/link share.png" alt="blog">
-                                        <div class="blog-date">
-                                            22 mar 2022
-                                        </div>
-                                    </div>
-                                    <div class="blog-info">
-                                        <h4 class="blog-title"> Link Share</h4>
-                                        <p class="blog-discription"> This is the full stack project which include both front-end and back-end. In this link-share app user make a link and send that link to reciever via email or via copying it. </p>
-                                        <p class="blog-tags"> Visit : <a href="https://link-share-app.netlify.app">Link</a> </p>
-                                        <p class="blog-tags"> Tags : <a href="https://github.com/getlost01/dlink-share">Html, CSS, Javascript, NodeJS, ExpressJS, MongoDB, Heruko</a> </p>
-                                    </div>
-                                </div>
-                            </div>
-
-
-                            <div class="blog-item padd-15">
-                                <div class="blog-item-inner shadow-dark">
-                                    <div class="blog-img">
-                                        <img src="images/site saver.png" alt="blog">
-                                        <div class="blog-date">
-                                            27 march 2022
-                                        </div>
-                                    </div>
-                                    <div class="blog-info">
-                                        <h4 class="blog-title"> Site Saver Extension </h4>
-                                        <p class="blog-discription">This extension is a site saver extension which allow user to save their important sites and link in one place. In just one click user can save their sites. </p>
-                                        <p class="blog-tags"> Visit : <a href="https://chrome.google.com/webstore/detail/site-saver/bhfelhfpjghfmhogedjnlmdpkbhmjhlf">Here </a> </p>
-                                        <p class="blog-tags"> Tags : <a href="https://github.com/getlost01/site-saver"> Html, CSS, Javascript, Chrome Web Api</a> </p>
-                                    </div>
-                                </div>
-                            </div>
-
-
-                            <div class="blog-item padd-15">
-                                <div class="blog-item-inner shadow-dark">
-                                    <div class="blog-img">
-                                        <img src="images/mini projects.png" alt="blog">
-                                        <div class="blog-date">
-                                            09 feb 2022
-                                        </div>
-                                    </div>
-                                    <div class="blog-info">
-                                        <h4 class="blog-title"> Responsive Web Pages </h4>
-                                        <p class="blog-discription">These are Responsive Web Page which featured with different features and different domains of my learning.</p>
-                                        <p class="blog-tags"> Visit : <a href="miniProjects/index.html" target="_blank"> Link </a> </p>
-                                        <p class="blog-tags"> Tags : <a href="https://github.com/getlost01/MiniProjects.github.io" target="_blank"> HTML, CSS, Javascript </a> </p>
-                                    </div>
-                                </div>
-                            </div>
-                           
-
-                        </div>
-                    </div>
-                </section>
-
-
-
-
-
-                <section class="contact section" id="contact">
-                    <div class="container">
-                        <div class="row">
-                            <div class="section-title padd-15">
-                               <h2>Contact Me</h2>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="contact-info-item padd-15">
-                                <div class="icon"><i class="fa fa-phone" aria-hidden="true"></i></div>
-                                <h4>Call On</h4>
-                                <p>+91 9305485633</p>
-                            </div>
-
-                            <div class="contact-info-item padd-15">
-                                <div class="icon"><i class="fa fa-map-marker" aria-hidden="true"></i></div>
-                                <h4>Reach Me</h4>
-                                <p>UIET CSJM University Kanpur</p>
-                            </div>
-
-                            <div class="contact-info-item padd-15">
-                                <div class="icon"><i class="fa fa-envelope" aria-hidden="true"></i></div>
-                                <h4>E-Mail</h4>
-                                <p>aagamjain573 @gmail.com</p>
-                            </div>
-
-                        </div>
-                        <div class="row">
-                            <div class="contact-form padd-15">
-                                <form action="form-handler.php" method="post" netlify>
-                                <div class="row">
-                                    <div class="form-item col-6 padd-15">
-                                        <div class="form-group">
-                                          <input type="text" name="name" class="form-control" placeholder="Name*">
-                                         </div>
-                                        </div>
-
-                                    <div class="form-item col-6 padd-15">
-                                        <div class="form-group ">
-                                          <input type="text" name="email" class="form-control" placeholder="E-mail*">
-                                         </div>
-                                    </div>
-                                </div>
-
-                                <div class="row">
-                                    <div class="form-item  col-12 padd-15">
-                                        <div class="form-group">
-                                          <input type="text" name="subject" class="form-control" placeholder="Subject*">
-                                         </div>
-                                    </div>
-                                </div>
-
-                                 <div class="row">
-                                    <div class="form-item   col-12 padd-15">
-                                        <div class="form-group ">
-                                          <textarea class="form-control" name="message" placeholder="Type Your Message Here...."></textarea>
-                                         </div>
-                                    </div>
-                                </div>
-
-                                <div class="row">
-                                    <div class="form-item   col-12 padd-15">
-                                        <div class="form-group ">
-                                          <button type="submit" class="btn">Send Message</button>
-                                         </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </form>
-                            </div>
-                        </div>
-                    </div>
-                </section>   
-                
-                
+        </header>
+
+        <!-- About -->
+        <section class="mb-8">
+            <h2 class="text-2xl font-semibold section-header en-content hidden">About Me</h2>
+            <h2 class="text-2xl font-semibold section-header fa-content">درباره من</h2>
+            <p class="text-gray-700 leading-relaxed en-content hidden">
+                My name is Matin Mokhtari. I have 8 years of experience in digital marketing and brand building. My main area of expertise is designing and implementing digital marketing strategies for brands. I have strong skills in areas like paid advertising, SEO, social media, and website design. So far, I have consulted for both local and international companies and managed various marketing projects. My goal is to help brands grow through the use of modern digital marketing tools.
+            </p>
+            <p class="text-gray-700 leading-relaxed fa-content">
+                نام من متین مختاری است. من ۸ سال تجربه در بازاریابی دیجیتال و برندسازی دارم. حوزه اصلی تخصص من طراحی و اجرای استراتژی‌های بازاریابی دیجیتال برای برندها است. مهارت‌های قوی در زمینه‌هایی مانند تبلیغات پولی، سئو، رسانه‌های اجتماعی و طراحی وب‌سایت دارم. تاکنون برای شرکت‌های محلی و بین‌المللی مشاوره داده‌ام و پروژه‌های بازاریابی متنوعی را مدیریت کرده‌ام. هدف من کمک به رشد برندها از طریق استفاده از ابزارهای مدرن بازاریابی دیجیتال است.
+            </p>
+        </section>
+
+        <!-- Experience -->
+        <section class="mb-8">
+            <h2 class="text-2xl font-semibold section-header en-content hidden">Experience</h2>
+            <h2 class="text-2xl font-semibold section-header fa-content">تجربه کاری</h2>
+            <div class="timeline-item">
+                <h3 class="text-xl font-medium text-blue-600 en-content hidden">CEO, Brandico</h3>
+                <h3 class="text-xl font-medium text-blue-600 fa-content">مدیرعامل، برندیکو</h3>
+                <p class="text-gray-600 en-content hidden">Brandico | July 2020 - Present (5 years)</p>
+                <p class="text-gray-600 fa-content">برندیکو | تیر ۱۳۹۹ - تاکنون (۵ سال)</p>
+                <p class="text-gray-700 en-content hidden">Kerman, Kerman Province, Iran</p>
+                <p class="text-gray-700 fa-content">کرمان، استان کرمان، ایران</p>
             </div>
-        </div>
-        <!---main container-->
+            <div class="timeline-item">
+                <h3 class="text-xl font-medium text-blue-600 en-content hidden">Digital Marketing, Rightel</h3>
+                <h3 class="text-xl font-medium text-blue-600 fa-content">بازاریابی دیجیتال، رایتل</h3>
+                <p class="text-gray-600 en-content hidden">RighTel | February 2021 - Present (4 years 5 months)</p>
+                <p class="text-gray-600 fa-content">رایتل | بهمن ۱۳۹۹ - تاکنون (۴ سال و ۵ ماه)</p>
+                <p class="text-gray-700 en-content hidden">Handling Digital Marketing for Raitel in Kerman, Kerman Province, Iran</p>
+                <p class="text-gray-700 fa-content">مدیریت بازاریابی دیجیتال برای رایتل در کرمان، استان کرمان، ایران</p>
+            </div>
+            <div class="timeline-item">
+                <h3 class="text-xl font-medium text-blue-600 en-content hidden">Web Sites, Mazandaran University of Science and Technology</h3>
+                <h3 class="text-xl font-medium text-blue-600 fa-content">وب‌سایت‌ها، دانشگاه علم و صنعت مازندران</h3>
+                <p class="text-gray-600 en-content hidden">Mazandaran University of Science and Technology | January 2022 - 2022 (less than a year)</p>
+                <p class="text-gray-600 fa-content">دانشگاه علم و صنعت مازندران | دی ۱۴۰۰ - ۱۴۰۱ (کمتر از یک سال)</p>
+            </div>
+            <div class="timeline-item">
+                <h3 class="text-xl font-medium text-blue-600 en-content hidden">Web Site, Iranmall</h3>
+                <h3 class="text-xl font-medium text-blue-600 fa-content">وب‌سایت، ایران‌مال</h3>
+                <p class="text-gray-600 en-content hidden">Iranmall | April 2017 - 2021 (4 years)</p>
+                <p class="text-gray-600 fa-content">ایران‌مال | فروردین ۱۳۹۶ - ۱۴۰۰ (۴ سال)</p>
+            </div>
+            <div class="timeline-item">
+                <h3 class="text-xl font-medium text-blue-600 en-content hidden">Real Estate, Vila</h3>
+                <h3 class="text-xl font-medium text-blue-600 fa-content">املاک، ویلا</h3>
+                <p class="text-gray-600 en-content hidden">Real Estate #Vila | February 2019 - February 2020 (1 year 1 month)</p>
+                <p class="text-gray-600 fa-content">املاک #ویلا | بهمن ۱۳۹۷ - بهمن ۱۳۹۸ (۱ سال و ۱ ماه)</p>
+            </div>
+            <div class="timeline-item">
+                <h3 class="text-xl font-medium text-blue-600 en-content hidden">Real Estate, Mahdavi</h3>
+                <h3 class="text-xl font-medium text-blue-600 fa-content">املاک، مهدوی</h3>
+                <p class="text-gray-600 en-content hidden">Mahdavi Real Estate | 2018 - February 2020 (2 years)</p>
+                <p class="text-gray-600 fa-content">املاک مهدوی | ۱۳۹۷ - بهمن ۱۳۹۸ (۲ سال)</p>
+                <p class="text-gray-700 en-content hidden">Amol, Mazandaran Province, Iran</p>
+                <p class="text-gray-700 fa-content">آمل، استان مازندران، ایران</p>
+            </div>
+            <div class="timeline-item">
+                <h3 class="text-xl font-medium text-blue-600 en-content hidden">Digital Marketing, 19kala</h3>
+                <h3 class="text-xl font-medium text-blue-600 fa-content">بازاریابی دیجیتال، ۱۹کالا</h3>
+                <p class="text-gray-600 en-content hidden">19kala | May 2018 - February 2019 (10 months)</p>
+                <p class="text-gray-600 fa-content">۱۹کالا | اردیبهشت ۱۳۹۷ - بهمن ۱۳۹۷ (۱۰ ماه)</p>
+                <p class="text-gray-700 en-content hidden">Tehran, Tehran Province, Iran</p>
+                <p class="text-gray-700 fa-content">تهران، استان تهران، ایران</p>
+            </div>
+            <div class="timeline-item">
+                <h3 class="text-xl font-medium text-blue-600 en-content hidden">Zima Darman</h3>
+                <h3 class="text-xl font-medium text-blue-600 fa-content">زیما درمان</h3>
+                <p class="text-gray-600 en-content hidden">Zima Darman | May 2017 - February 2019 (1 year 10 months)</p>
+                <p class="text-gray-600 fa-content">زیما درمان | اردیبهشت ۱۳۹۶ - بهمن ۱۳۹۷ (۱ سال و ۱۰ ماه)</p>
+                <p class="text-gray-700 en-content hidden">Tehran, Tehran Province, Iran</p>
+                <p class="text-gray-700 fa-content">تهران، استان تهران، ایران</p>
+            </div>
+        </section>
 
-        
-        <!-- color-switch  -->
+        <!-- Education -->
+        <section class="mb-8">
+            <h2 class="text-2xl font-semibold section-header en-content hidden">Education</h2>
+            <h2 class="text-2xl font-semibold section-header fa-content">تحصیلات</h2>
+            <div class="timeline-item">
+                <h3 class="text-xl font-medium text-blue-600 en-content hidden">Engineering, Computer</h3>
+                <h3 class="text-xl font-medium text-blue-600 fa-content">مهندسی کامپیوتر</h3>
+                <p class="text-gray-600 en-content hidden">Islamic Azad University, Kerman Branch</p>
+                <p class="text-gray-600 fa-content">دانشگاه آزاد اسلامی، شعبه کرمان</p>
+            </div>
+        </section>
 
-      <div class="style-switch">
-           <div class="toggle-style-switcher">
-            <i class="fa fa-sliders" aria-hidden="true"></i>
-           </div>
-           <h5>
-               Style-Switch
-           </h5>
-           <ul>
-            <li><a title="pink" id="defaultStyle1" style="background-color: #ec1839" onclick="setActiveStyle('pink')"></a></li>  
-            <li><a title="blue" id="defaultStyle2" style="background-color: #2196f3" onclick="setActiveStyle('blue')"></a></li>
-            <li><a title="orange" style="background-color: #fa5b0f" onclick="setActiveStyle('orange')"></a></li>
-            <li><a title="yellow" style="background-color: #ffb400" onclick="setActiveStyle('yellow')"></a></li>
-            <li><a title="green" style="background-color: #72b626" onclick="setActiveStyle('green')"></a></li>
-          </ul>
-          <h5>
-              Display Mode
-          </h5>
-          <label><input type="radio" class="body-skin" name="body-style" value="light">&nbsp; Light</label>&nbsp;
-          <label><input type="radio" class="body-skin" name="body-style" value="dark" checked="true">&nbsp; Dark</label>
+        <!-- Skills -->
+        <section class="mb-8">
+            <h2 class="text-2xl font-semibold section-header en-content hidden">Skills</h2>
+            <h2 class="text-2xl font-semibold section-header fa-content">مهارت‌ها</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div>
+                    <p class="text-gray-700 font-medium en-content hidden">Digital Marketing</p>
+                    <p class="text-gray-700 font-medium fa-content">بازاریابی دیجیتال</p>
+                    <div class="skill-bar">
+                        <div class="skill-level" style="width: 90%"></div>
+                    </div>
+                </div>
+                <div>
+                    <p class="text-gray-700 font-medium en-content hidden">Web Design</p>
+                    <p class="text-gray-700 font-medium fa-content">طراحی وب</p>
+                    <div class="skill-bar">
+                        <div class="skill-level" style="width: 85%"></div>
+                    </div>
+                </div>
+                <div>
+                    <p class="text-gray-700 font-medium en-content hidden">Network Security</p>
+                    <p class="text-gray-700 font-medium fa-content">امنیت شبکه</p>
+                    <div class="skill-bar">
+                        <div class="skill-level" style="width: 80%"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-       </div>
+        <!-- Languages -->
+        <section class="mb-8">
+            <h2 class="text-2xl font-semibold section-header en-content hidden">Languages</h2>
+            <h2 class="text-2xl font-semibold section-header fa-content">زبان‌ها</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div>
+                    <p class="text-gray-700 font-medium en-content hidden">English (Professional Working)</p>
+                    <p class="text-gray-700 font-medium fa-content">انگلیسی (تسلط حرفه‌ای کاری)</p>
+                    <div class="skill-bar">
+                        <div class="skill-level" style="width: 70%"></div>
+                    </div>
+                </div>
+                <div>
+                    <p class="text-gray-700 font-medium en-content hidden">Persian (Full Professional)</p>
+                    <p class="text-gray-700 font-medium fa-content">پارسی (تسلط کامل حرفه‌ای)</p>
+                    <div class="skill-bar">
+                        <div class="skill-level" style="width: 100%"></div>
+                    </div>
+                </div>
+                <div>
+                    <p class="text-gray-700 font-medium en-content hidden">German (Limited Working)</p>
+                    <p class="text-gray-700 font-medium fa-content">آلمانی (تسلط محدود کاری)</p>
+                    <div class="skill-bar">
+                        <div class="skill-level" style="width: 40%"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
 
+        <!-- Contact -->
+        <section class="text-center">
+            <h2 class="text-2xl font-semibold section-header en-content hidden">Contact</h2>
+            <h2 class="text-2xl font-semibold section-header fa-content">تماس</h2>
+            <p class="text-gray-700 en-content hidden">Feel free to reach out for collaboration or opportunities:</p>
+            <p class="text-gray-700 fa-content">برای همکاری یا فرصت‌های شغلی با من تماس بگیرید:</p>
+            <p class="text-blue-600 mt-2">
+                <a href="mailto:matinmok02@gmail.com" class="hover:underline">matinmok02@gmail.com</a> | 
+                <a href="tel:+989227334601" class="hover:underline">+98 922 733 4601</a>
+            </p>
+        </section>
+    </div>
 
- <!-- javascript -->
+    <script>
+        const faButton = document.getElementById('lang-fa');
+        const enButton = document.getElementById('lang-en');
+        const faContents = document.querySelectorAll('.fa-content');
+        const enContents = document.querySelectorAll('.en-content');
+        const html = document.documentElement;
 
+        faButton.addEventListener('click', () => {
+            html.setAttribute('lang', 'fa');
+            html.setAttribute('dir', 'rtl');
+            faContents.forEach(el => el.classList.remove('hidden'));
+            enContents.forEach(el => el.classList.add('hidden'));
+            faButton.classList.add('bg-blue-600', 'text-white');
+            faButton.classList.remove('bg-gray-300', 'text-gray-800');
+            enButton.classList.add('bg-gray-300', 'text-gray-800');
+            enButton.classList.remove('bg-blue-600', 'text-white');
+        });
 
-
- <script src="./javascript/styleswitch.js"></script>
-    </body>
+        enButton.addEventListener('click', () => {
+            html.setAttribute('lang', 'en');
+            html.setAttribute('dir', 'ltr');
+            faContents.forEach(el => el.classList.add('hidden'));
+            enContents.forEach(el => el.classList.remove('hidden'));
+            faButton.classList.add('bg-gray-300', 'text-gray-800');
+            faButton.classList.remove('bg-blue-600', 'text-white');
+            enButton.classList.add('bg-blue-600', 'text-white');
+            enButton.classList.remove('bg-gray-300', 'text-gray-800');
+        });
+    </script>
+</body>
 </html>
