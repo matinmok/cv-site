@@ -26,8 +26,23 @@
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Vazirmatn:wght@100;200;300;400;500;600;700;800;900&display=swap');
         
+        * {
+            box-sizing: border-box;
+        }
+        
         body {
             font-family: 'Vazirmatn', sans-serif;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding-left: 1rem;
+            padding-right: 1rem;
         }
 
         .gradient-bg {
@@ -46,8 +61,8 @@
         }
 
         .card-hover:hover {
-            transform: translateY(-10px) scale(1.02);
-            box-shadow: 0 25px 50px rgba(96, 165, 250, 0.2);
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(96, 165, 250, 0.2);
         }
 
         .floating-element {
@@ -195,9 +210,11 @@
         }
 
         .section {
+            width: 100%;
             min-height: 100vh;
             display: flex;
             align-items: center;
+            padding: 2rem 0;
         }
 
         .contact-fab {
@@ -302,6 +319,7 @@
             align-items: center;
             height: 100%;
             gap: 2rem;
+            padding: 2rem;
         }
 
         .mobile-nav-link {
@@ -312,6 +330,9 @@
             transition: all 0.3s ease;
             padding: 1rem 2rem;
             border-radius: 0.5rem;
+            text-align: center;
+            width: 100%;
+            max-width: 300px;
         }
 
         .mobile-nav-link:hover {
@@ -319,53 +340,105 @@
             color: #60a5fa;
         }
 
-        /* Responsive Modifications */
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .container {
+                padding-left: 1.5rem;
+                padding-right: 1.5rem;
+            }
+        }
+
         @media (max-width: 768px) {
-            .timeline-line::before {
-                left: 20px;
+            .container {
+                padding-left: 1rem;
+                padding-right: 1rem;
             }
-            .timeline-dot {
-                left: 20px;
-            }
-            .timeline-item .grid {
-                grid-template-columns: 1fr;
-                gap: 0;
-                padding-left: 3rem;
-            }
-            .timeline-item .md\\:text-right {
-                text-align: left;
-            }
+            
             .section {
                 min-height: auto;
-                padding: 2rem 0;
+                padding: 3rem 0;
             }
+            
+            .timeline-line::before {
+                left: 1.5rem;
+                transform: none;
+            }
+            
+            .timeline-dot {
+                left: 1.5rem;
+                transform: none;
+            }
+            
+            .timeline-item .timeline-content {
+                margin-left: 3.5rem;
+                margin-right: 0;
+            }
+            
             .hero-content {
                 padding: 2rem 0;
             }
+            
             .contact-fab {
                 bottom: 20px;
                 right: 20px;
                 width: 56px;
                 height: 56px;
             }
+            
             .particles {
                 display: none;
             }
+            
             .floating-element {
                 animation: none;
             }
+            
             .card-hover:hover {
-                transform: none;
-                box-shadow: 0 10px 25px rgba(96, 165, 250, 0.1);
+                transform: translateY(-3px);
+                box-shadow: 0 8px 20px rgba(96, 165, 250, 0.15);
+            }
+            
+            .nav-link {
+                font-size: 14px;
             }
         }
 
         @media (max-width: 640px) {
-            .nav-link {
-                font-size: 14px;
+            .container {
+                padding-left: 0.75rem;
+                padding-right: 0.75rem;
             }
+            
             .section {
-                padding: 1rem 0;
+                padding: 2rem 0;
+            }
+            
+            .timeline-item .timeline-content {
+                margin-left: 3rem;
+            }
+            
+            .timeline-line::before {
+                left: 1rem;
+            }
+            
+            .timeline-dot {
+                left: 1rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding-left: 0.5rem;
+                padding-right: 0.5rem;
+            }
+            
+            .mobile-menu-content {
+                padding: 1rem;
+            }
+            
+            .mobile-nav-link {
+                font-size: 1.25rem;
+                padding: 0.75rem 1.5rem;
             }
         }
 
@@ -380,6 +453,11 @@
             .nav-link:hover {
                 transform: none;
             }
+        }
+
+        /* Timeline responsive styles */
+        .timeline-content {
+            width: 100%;
         }
     </style>
 </head>
@@ -399,7 +477,7 @@
 
     <!-- Navigation -->
     <nav class="fixed top-0 w-full z-50 glass-effect transition-all duration-500">
-        <div class="container mx-auto px-4 sm:px-6 py-3">
+        <div class="container mx-auto py-3">
             <div class="flex justify-between items-center">
                 <div class="text-xl sm:text-2xl font-bold gradient-text">
                     <span class="fa-content">متین مختاری</span>
@@ -453,7 +531,7 @@
 
     <!-- Hero Section -->
     <section id="home" class="section gradient-bg relative overflow-hidden pt-20">
-        <div class="container mx-auto px-4 sm:px-6 text-center relative z-10 hero-content">
+        <div class="container mx-auto text-center relative z-10 hero-content">
             <div class="floating-element">
                 <div class="w-32 h-32 sm:w-40 sm:h-40 mx-auto mb-6 sm:mb-8 rounded-full bg-gradient-to-r from-primary to-secondary p-1">
                     <div class="w-full h-full rounded-full bg-white dark:bg-dark flex items-center justify-center">
@@ -461,24 +539,24 @@
                     </div>
                 </div>
             </div>
-            <h1 class="text-4xl sm:text-6xl lg:text-8xl font-bold text-white mb-4 sm:mb-6 leading-tight">
+            <h1 class="text-3xl sm:text-5xl lg:text-7xl font-bold text-white mb-4 sm:mb-6 leading-tight px-4">
                 <span class="fa-content">سلام، من متین هستم</span>
                 <span class="en-content hidden">Hi, I'm Matin</span>
             </h1>
-            <p id="typing-text" class="text-xl sm:text-2xl lg:text-3xl text-blue-200 mb-6 sm:mb-8 typing-animation">
+            <p id="typing-text" class="text-lg sm:text-xl lg:text-2xl text-blue-200 mb-6 sm:mb-8 typing-animation px-4">
                 <span class="fa-content">بازاریاب دیجیتال</span>
                 <span class="en-content hidden">Digital Marketer</span>
             </p>
-            <p class="text-base sm:text-lg text-gray-300 mb-8 sm:mb-12 max-w-3xl mx-auto leading-relaxed px-4">
+            <p class="text-sm sm:text-base lg:text-lg text-gray-300 mb-8 sm:mb-12 max-w-3xl mx-auto leading-relaxed px-4">
                 <span class="fa-content">۸ سال تجربه در بازاریابی دیجیتال، برندسازی و توسعه وب. مدیرعامل برندیکو و متخصص استراتژی‌های بازاریابی نوین</span>
                 <span class="en-content hidden">8 years experience in digital marketing, branding and web development. CEO of Brandico and specialist in modern marketing strategies</span>
             </p>
-            <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4 sm:space-x-reverse justify-center items-center">
-                <a href="#experience" class="w-full sm:w-auto bg-primary text-white px-6 sm:px-8 py-3 sm:py-4 rounded-lg text-base sm:text-lg font-semibold hover:bg-secondary transition-all duration-300 transform hover:scale-105">
+            <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4 sm:space-x-reverse justify-center items-center px-4">
+                <a href="#experience" class="w-full sm:w-auto bg-primary text-white px-6 sm:px-8 py-3 sm:py-4 rounded-lg text-sm sm:text-base font-semibold hover:bg-secondary transition-all duration-300 transform hover:scale-105 text-center">
                     <span class="fa-content">مشاهده نمونه کارها</span>
                     <span class="en-content hidden">View My Work</span>
                 </a>
-                <a href="#contact" class="w-full sm:w-auto border-2 border-primary text-primary px-6 sm:px-8 py-3 sm:py-4 rounded-lg text-base sm:text-lg font-semibold hover:bg-primary hover:text-white transition-all duration-300">
+                <a href="#contact" class="w-full sm:w-auto border-2 border-primary text-primary px-6 sm:px-8 py-3 sm:py-4 rounded-lg text-sm sm:text-base font-semibold hover:bg-primary hover:text-white transition-all duration-300 text-center">
                     <span class="fa-content">تماس با من</span>
                     <span class="en-content hidden">Contact Me</span>
                 </a>
@@ -499,9 +577,9 @@
 
     <!-- About Section -->
     <section id="about" class="section bg-white dark:bg-darkSecondary pt-20">
-        <div class="container mx-auto px-4 sm:px-6">
+        <div class="container mx-auto">
             <div class="text-center mb-12 sm:mb-16">
-                <h2 class="text-3xl sm:text-5xl font-bold mb-4 gradient-text">
+                <h2 class="text-2xl sm:text-4xl lg:text-5xl font-bold mb-4 gradient-text">
                     <span class="fa-content">درباره من</span>
                     <span class="en-content hidden">About Me</span>
                 </h2>
@@ -509,31 +587,31 @@
             </div>
             <div class="grid lg:grid-cols-2 gap-8 lg:gap-16 items-center max-w-6xl mx-auto">
                 <div class="order-2 lg:order-1">
-                    <h3 class="text-2xl sm:text-3xl font-bold mb-4 sm:mb-6 text-gray-800 dark:text-white">
+                    <h3 class="text-xl sm:text-2xl lg:text-3xl font-bold mb-4 sm:mb-6 text-gray-800 dark:text-white">
                         <span class="fa-content">متین مختاری</span>
                         <span class="en-content hidden">Matin Mokhtari</span>
                     </h3>
-                    <p class="text-gray-600 dark:text-gray-300 text-base sm:text-lg leading-relaxed mb-6 sm:mb-8">
+                    <p class="text-gray-600 dark:text-gray-300 text-sm sm:text-base lg:text-lg leading-relaxed mb-6 sm:mb-8">
                         <span class="fa-content">نام من متین مختاری است. من ۸ سال تجربه در بازاریابی دیجیتال و برندسازی دارم. حوزه اصلی تخصص من طراحی و اجرای استراتژی‌های بازاریابی دیجیتال برای برندها است. مهارت‌های قوی در زمینه‌هایی مانند تبلیغات پولی، سئو، رسانه‌های اجتماعی و طراحی وب‌سایت دارم.</span>
                         <span class="en-content hidden">My name is Matin Mokhtari. I have 8 years of experience in digital marketing and brand building. My main area of expertise is designing and implementing digital marketing strategies for brands. I have strong skills in areas like paid advertising, SEO, social media, and website design.</span>
                     </p>
                     <div class="grid grid-cols-2 gap-4 sm:gap-6 mb-6 sm:mb-8">
                         <div class="text-center p-3 sm:p-4 bg-gray-50 dark:bg-gray-800 rounded-lg">
-                            <h4 class="text-xl sm:text-2xl font-bold text-primary mb-2">8+</h4>
-                            <p class="text-gray-600 dark:text-gray-300 text-sm sm:text-base">
+                            <h4 class="text-lg sm:text-xl lg:text-2xl font-bold text-primary mb-2">8+</h4>
+                            <p class="text-gray-600 dark:text-gray-300 text-xs sm:text-sm">
                                 <span class="fa-content">سال تجربه</span>
                                 <span class="en-content hidden">Years Experience</span>
                             </p>
                         </div>
                         <div class="text-center p-3 sm:p-4 bg-gray-50 dark:bg-gray-800 rounded-lg">
-                            <h4 class="text-xl sm:text-2xl font-bold text-primary mb-2">50+</h4>
-                            <p class="text-gray-600 dark:text-gray-300 text-sm sm:text-base">
+                            <h4 class="text-lg sm:text-xl lg:text-2xl font-bold text-primary mb-2">50+</h4>
+                            <p class="text-gray-600 dark:text-gray-300 text-xs sm:text-sm">
                                 <span class="fa-content">پروژه موفق</span>
                                 <span class="en-content hidden">Successful Projects</span>
                             </p>
                         </div>
                     </div>
-                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4 text-sm">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4 text-xs sm:text-sm">
                         <div>
                             <h4 class="font-semibold text-primary mb-2">
                                 <span class="fa-content">تخصص:</span>
@@ -566,22 +644,22 @@
                         </div>
                         <div>
                             <h4 class="font-semibold text-primary mb-2">Email:</h4>
-                            <p class="text-gray-600 dark:text-gray-300">matinmok02@gmail.com</p>
+                            <p class="text-gray-600 dark:text-gray-300 break-all">matinmok02@gmail.com</p>
                         </div>
                     </div>
                 </div>
                 <div class="order-1 lg:order-2">
                     <div class="relative max-w-sm mx-auto">
-                        <div class="w-64 h-64 sm:w-80 sm:h-80 mx-auto rounded-full bg-gradient-to-br from-primary to-secondary p-1">
+                        <div class="w-48 h-48 sm:w-64 sm:h-64 lg:w-80 lg:h-80 mx-auto rounded-full bg-gradient-to-br from-primary to-secondary p-1">
                             <div class="w-full h-full rounded-full bg-white dark:bg-darkSecondary flex items-center justify-center">
-                                <i class="fas fa-user-tie text-6xl sm:text-8xl text-primary"></i>
+                                <i class="fas fa-user-tie text-4xl sm:text-6xl lg:text-8xl text-primary"></i>
                             </div>
                         </div>
-                        <div class="absolute -top-2 -right-2 sm:-top-4 sm:-right-4 w-16 h-16 sm:w-20 sm:h-20 bg-yellow-400 rounded-full flex items-center justify-center floating-element">
-                            <i class="fas fa-crown text-lg sm:text-2xl text-white"></i>
+                        <div class="absolute -top-2 -right-2 sm:-top-4 sm:-right-4 w-12 h-12 sm:w-16 sm:h-16 lg:w-20 lg:h-20 bg-yellow-400 rounded-full flex items-center justify-center floating-element">
+                            <i class="fas fa-crown text-sm sm:text-lg lg:text-2xl text-white"></i>
                         </div>
-                        <div class="absolute -bottom-2 -left-2 sm:-bottom-4 sm:-left-4 w-12 h-12 sm:w-16 sm:h-16 bg-green-400 rounded-full flex items-center justify-center floating-element" style="animation-delay: 2s;">
-                            <i class="fas fa-chart-line text-sm sm:text-xl text-white"></i>
+                        <div class="absolute -bottom-2 -left-2 sm:-bottom-4 sm:-left-4 w-10 h-10 sm:w-12 sm:h-12 lg:w-16 lg:h-16 bg-green-400 rounded-full flex items-center justify-center floating-element" style="animation-delay: 2s;">
+                            <i class="fas fa-chart-line text-xs sm:text-sm lg:text-xl text-white"></i>
                         </div>
                     </div>
                 </div>
@@ -591,9 +669,9 @@
 
     <!-- Experience Section -->
     <section id="experience" class="section bg-gray-50 dark:bg-dark pt-20">
-        <div class="container mx-auto px-4 sm:px-6">
+        <div class="container mx-auto">
             <div class="text-center mb-12 sm:mb-16">
-                <h2 class="text-3xl sm:text-5xl font-bold mb-4 gradient-text">
+                <h2 class="text-2xl sm:text-4xl lg:text-5xl font-bold mb-4 gradient-text">
                     <span class="fa-content">تجربه کاری</span>
                     <span class="en-content hidden">Experience</span>
                 </h2>
@@ -607,47 +685,41 @@
                 <!-- CEO Brandico -->
                 <div class="timeline-item mb-8 sm:mb-12">
                     <div class="timeline-dot"></div>
-                    <div class="grid md:grid-cols-2 gap-6 sm:gap-8">
-                        <div class="md:text-right">
-                            <div class="card-hover bg-white dark:bg-darkSecondary p-4 sm:p-6 rounded-lg shadow-lg">
-                                <h3 class="text-lg sm:text-xl font-bold text-primary mb-2">
-                                    <span class="fa-content">مدیرعامل، برندیکو</span>
-                                    <span class="en-content hidden">CEO, Brandico</span>
-                                </h3>
-                                <p class="text-gray-600 dark:text-gray-300 mb-3 sm:mb-4 text-sm sm:text-base">
-                                    <span class="fa-content">۱۳۹۷ - تاکنون (۸ سال)</span>
-                                    <span class="en-content hidden">2018 - Present (8 years)</span>
-                                </p>
-                                <p class="text-gray-700 dark:text-gray-400 text-sm sm:text-base">
-                                    <span class="fa-content">مدیریت و رهبری تیم بازاریابی دیجیتال، توسعه استراتژی‌های برندسازی</span>
-                                    <span class="en-content hidden">Leading digital marketing team, developing branding strategies</span>
-                                </p>
-                            </div>
+                    <div class="timeline-content">
+                        <div class="card-hover bg-white dark:bg-darkSecondary p-4 sm:p-6 rounded-lg shadow-lg">
+                            <h3 class="text-lg sm:text-xl font-bold text-primary mb-2">
+                                <span class="fa-content">مدیرعامل، برندیکو</span>
+                                <span class="en-content hidden">CEO, Brandico</span>
+                            </h3>
+                            <p class="text-gray-600 dark:text-gray-300 mb-3 sm:mb-4 text-sm sm:text-base">
+                                <span class="fa-content">۱۳۹۷ - تاکنون (۸ سال)</span>
+                                <span class="en-content hidden">2018 - Present (8 years)</span>
+                            </p>
+                            <p class="text-gray-700 dark:text-gray-400 text-sm sm:text-base">
+                                <span class="fa-content">مدیریت و رهبری تیم بازاریابی دیجیتال، توسعه استراتژی‌های برندسازی</span>
+                                <span class="en-content hidden">Leading digital marketing team, developing branding strategies</span>
+                            </p>
                         </div>
-                        <div></div>
                     </div>
                 </div>
 
                 <!-- RighTel -->
                 <div class="timeline-item mb-8 sm:mb-12">
                     <div class="timeline-dot"></div>
-                    <div class="grid md:grid-cols-2 gap-6 sm:gap-8">
-                        <div></div>
-                        <div>
-                            <div class="card-hover bg-white dark:bg-darkSecondary p-4 sm:p-6 rounded-lg shadow-lg">
-                                <h3 class="text-lg sm:text-xl font-bold text-primary mb-2">
-                                    <span class="fa-content">بازاریابی دیجیتال، رایتل</span>
-                                    <span class="en-content hidden">Digital Marketing, RighTel</span>
-                                </h3>
-                                <p class="text-gray-600 dark:text-gray-300 mb-3 sm:mb-4 text-sm sm:text-base">
-                                    <span class="fa-content">بهمن ۱۳۹۹ - تاکنون (۴ سال و ۵ ماه)</span>
-                                    <span class="en-content hidden">February 2021 - Present (4 years 5 months)</span>
-                                </p>
-                                <p class="text-gray-700 dark:text-gray-400 text-sm sm:text-base">
-                                    <span class="fa-content">مدیریت کمپین‌های دیجیتال، تحلیل داده و بهبود ROI</span>
-                                    <span class="en-content hidden">Managing digital campaigns, data analysis and ROI optimization</span>
-                                </p>
-                            </div>
+                    <div class="timeline-content">
+                        <div class="card-hover bg-white dark:bg-darkSecondary p-4 sm:p-6 rounded-lg shadow-lg">
+                            <h3 class="text-lg sm:text-xl font-bold text-primary mb-2">
+                                <span class="fa-content">بازاریابی دیجیتال، رایتل</span>
+                                <span class="en-content hidden">Digital Marketing, RighTel</span>
+                            </h3>
+                            <p class="text-gray-600 dark:text-gray-300 mb-3 sm:mb-4 text-sm sm:text-base">
+                                <span class="fa-content">بهمن ۱۳۹۹ - تاکنون (۴ سال و ۵ ماه)</span>
+                                <span class="en-content hidden">February 2021 - Present (4 years 5 months)</span>
+                            </p>
+                            <p class="text-gray-700 dark:text-gray-400 text-sm sm:text-base">
+                                <span class="fa-content">مدیریت کمپین‌های دیجیتال، تحلیل داده و بهبود ROI</span>
+                                <span class="en-content hidden">Managing digital campaigns, data analysis and ROI optimization</span>
+                            </p>
                         </div>
                     </div>
                 </div>
@@ -655,47 +727,41 @@
                 <!-- Mazandaran University -->
                 <div class="timeline-item mb-8 sm:mb-12">
                     <div class="timeline-dot"></div>
-                    <div class="grid md:grid-cols-2 gap-6 sm:gap-8">
-                        <div class="md:text-right">
-                            <div class="card-hover bg-white dark:bg-darkSecondary p-4 sm:p-6 rounded-lg shadow-lg">
-                                <h3 class="text-lg sm:text-xl font-bold text-primary mb-2">
-                                    <span class="fa-content">توسعه وب، دانشگاه علم و صنعت مازندران</span>
-                                    <span class="en-content hidden">Web Development, Mazandaran University</span>
-                                </h3>
-                                <p class="text-gray-600 dark:text-gray-300 mb-3 sm:mb-4 text-sm sm:text-base">
-                                    <span class="fa-content">دی ۱۴۰۰ - ۱۴۰۱</span>
-                                    <span class="en-content hidden">January 2022 - 2022</span>
-                                </p>
-                                <p class="text-gray-700 dark:text-gray-400 text-sm sm:text-base">
-                                    <span class="fa-content">طراحی و توسعه سیستم‌های وب دانشگاهی</span>
-                                    <span class="en-content hidden">Design and development of university web systems</span>
-                                </p>
-                            </div>
+                    <div class="timeline-content">
+                        <div class="card-hover bg-white dark:bg-darkSecondary p-4 sm:p-6 rounded-lg shadow-lg">
+                            <h3 class="text-lg sm:text-xl font-bold text-primary mb-2">
+                                <span class="fa-content">توسعه وب، دانشگاه علم و صنعت مازندران</span>
+                                <span class="en-content hidden">Web Development, Mazandaran University</span>
+                            </h3>
+                            <p class="text-gray-600 dark:text-gray-300 mb-3 sm:mb-4 text-sm sm:text-base">
+                                <span class="fa-content">دی ۱۴۰۰ - ۱۴۰۱</span>
+                                <span class="en-content hidden">January 2022 - 2022</span>
+                            </p>
+                            <p class="text-gray-700 dark:text-gray-400 text-sm sm:text-base">
+                                <span class="fa-content">طراحی و توسعه سیستم‌های وب دانشگاهی</span>
+                                <span class="en-content hidden">Design and development of university web systems</span>
+                            </p>
                         </div>
-                        <div></div>
                     </div>
                 </div>
 
                 <!-- Iranmall -->
                 <div class="timeline-item mb-8 sm:mb-12">
                     <div class="timeline-dot"></div>
-                    <div class="grid md:grid-cols-2 gap-6 sm:gap-8">
-                        <div></div>
-                        <div>
-                            <div class="card-hover bg-white dark:bg-darkSecondary p-4 sm:p-6 rounded-lg shadow-lg">
-                                <h3 class="text-lg sm:text-xl font-bold text-primary mb-2">
-                                    <span class="fa-content">توسعه وب، ایران‌مال</span>
-                                    <span class="en-content hidden">Web Development, Iranmall</span>
-                                </h3>
-                                <p class="text-gray-600 dark:text-gray-300 mb-3 sm:mb-4 text-sm sm:text-base">
-                                    <span class="fa-content">فروردین ۱۳۹۶ - ۱۴۰۰ (۴ سال)</span>
-                                    <span class="en-content hidden">April 2017 - 2021 (4 years)</span>
-                                </p>
-                                <p class="text-gray-700 dark:text-gray-400 text-sm sm:text-base">
-                                    <span class="fa-content">توسعه پلتفرم تجارت الکترونیک و بهینه‌سازی عملکرد</span>
-                                    <span class="en-content hidden">E-commerce platform development and performance optimization</span>
-                                </p>
-                            </div>
+                    <div class="timeline-content">
+                        <div class="card-hover bg-white dark:bg-darkSecondary p-4 sm:p-6 rounded-lg shadow-lg">
+                            <h3 class="text-lg sm:text-xl font-bold text-primary mb-2">
+                                <span class="fa-content">توسعه وب، ایران‌مال</span>
+                                <span class="en-content hidden">Web Development, Iranmall</span>
+                            </h3>
+                            <p class="text-gray-600 dark:text-gray-300 mb-3 sm:mb-4 text-sm sm:text-base">
+                                <span class="fa-content">فروردین ۱۳۹۶ - ۱۴۰۰ (۴ سال)</span>
+                                <span class="en-content hidden">April 2017 - 2021 (4 years)</span>
+                            </p>
+                            <p class="text-gray-700 dark:text-gray-400 text-sm sm:text-base">
+                                <span class="fa-content">توسعه پلتفرم تجارت الکترونیک و بهینه‌سازی عملکرد</span>
+                                <span class="en-content hidden">E-commerce platform development and performance optimization</span>
+                            </p>
                         </div>
                     </div>
                 </div>
@@ -705,9 +771,9 @@
 
     <!-- Skills Section -->
     <section id="skills" class="section bg-white dark:bg-darkSecondary pt-20">
-        <div class="container mx-auto px-4 sm:px-6">
+        <div class="container mx-auto">
             <div class="text-center mb-12 sm:mb-16">
-                <h2 class="text-3xl sm:text-5xl font-bold mb-4 gradient-text">
+                <h2 class="text-2xl sm:text-4xl lg:text-5xl font-bold mb-4 gradient-text">
                     <span class="fa-content">مهارت‌ها و تخصص‌ها</span>
                     <span class="en-content hidden">Skills & Expertise</span>
                 </h2>
@@ -721,7 +787,7 @@
                 <div class="grid lg:grid-cols-2 gap-8 lg:gap-12">
                     <!-- Technical Skills -->
                     <div>
-                        <h3 class="text-xl sm:text-2xl font-bold mb-6 sm:mb-8 text-center">
+                        <h3 class="text-lg sm:text-xl lg:text-2xl font-bold mb-6 sm:mb-8 text-center">
                             <span class="fa-content">مهارت‌های تکنیکی</span>
                             <span class="en-content hidden">Technical Skills</span>
                         </h3>
@@ -767,7 +833,7 @@
 
                     <!-- Languages -->
                     <div>
-                        <h3 class="text-xl sm:text-2xl font-bold mb-6 sm:mb-8 text-center">
+                        <h3 class="text-lg sm:text-xl lg:text-2xl font-bold mb-6 sm:mb-8 text-center">
                             <span class="fa-content">زبان‌ها</span>
                             <span class="en-content hidden">Languages</span>
                         </h3>
@@ -814,42 +880,42 @@
 
                 <!-- Tools & Technologies -->
                 <div class="mt-12 sm:mt-16">
-                    <h3 class="text-xl sm:text-2xl font-bold mb-6 sm:mb-8 text-center">
+                    <h3 class="text-lg sm:text-xl lg:text-2xl font-bold mb-6 sm:mb-8 text-center">
                         <span class="fa-content">ابزارها و تکنولوژی‌ها</span>
                         <span class="en-content hidden">Tools & Technologies</span>
                     </h3>
-                    <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6">
-                        <div class="card-hover text-center p-4 sm:p-6 bg-gray-50 dark:bg-gray-800 rounded-lg">
-                            <i class="fab fa-google text-3xl sm:text-5xl text-red-500 mb-3 sm:mb-4"></i>
-                            <p class="font-semibold text-xs sm:text-base">Google Ads</p>
+                    <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-4 lg:gap-6">
+                        <div class="card-hover text-center p-3 sm:p-4 lg:p-6 bg-gray-50 dark:bg-gray-800 rounded-lg">
+                            <i class="fab fa-google text-2xl sm:text-3xl lg:text-5xl text-red-500 mb-2 sm:mb-3 lg:mb-4"></i>
+                            <p class="font-semibold text-xs sm:text-sm lg:text-base">Google Ads</p>
                         </div>
-                        <div class="card-hover text-center p-4 sm:p-6 bg-gray-50 dark:bg-gray-800 rounded-lg">
-                            <i class="fab fa-facebook text-3xl sm:text-5xl text-blue-600 mb-3 sm:mb-4"></i>
-                            <p class="font-semibold text-xs sm:text-base">Facebook Ads</p>
+                        <div class="card-hover text-center p-3 sm:p-4 lg:p-6 bg-gray-50 dark:bg-gray-800 rounded-lg">
+                            <i class="fab fa-facebook text-2xl sm:text-3xl lg:text-5xl text-blue-600 mb-2 sm:mb-3 lg:mb-4"></i>
+                            <p class="font-semibold text-xs sm:text-sm lg:text-base">Facebook Ads</p>
                         </div>
-                        <div class="card-hover text-center p-4 sm:p-6 bg-gray-50 dark:bg-gray-800 rounded-lg">
-                            <i class="fas fa-chart-line text-3xl sm:text-5xl text-green-500 mb-3 sm:mb-4"></i>
-                            <p class="font-semibold text-xs sm:text-base">Analytics</p>
+                        <div class="card-hover text-center p-3 sm:p-4 lg:p-6 bg-gray-50 dark:bg-gray-800 rounded-lg">
+                            <i class="fas fa-chart-line text-2xl sm:text-3xl lg:text-5xl text-green-500 mb-2 sm:mb-3 lg:mb-4"></i>
+                            <p class="font-semibold text-xs sm:text-sm lg:text-base">Analytics</p>
                         </div>
-                        <div class="card-hover text-center p-4 sm:p-6 bg-gray-50 dark:bg-gray-800 rounded-lg">
-                            <i class="fab fa-wordpress text-3xl sm:text-5xl text-blue-800 mb-3 sm:mb-4"></i>
-                            <p class="font-semibold text-xs sm:text-base">WordPress</p>
+                        <div class="card-hover text-center p-3 sm:p-4 lg:p-6 bg-gray-50 dark:bg-gray-800 rounded-lg">
+                            <i class="fab fa-wordpress text-2xl sm:text-3xl lg:text-5xl text-blue-800 mb-2 sm:mb-3 lg:mb-4"></i>
+                            <p class="font-semibold text-xs sm:text-sm lg:text-base">WordPress</p>
                         </div>
-                        <div class="card-hover text-center p-4 sm:p-6 bg-gray-50 dark:bg-gray-800 rounded-lg">
-                            <i class="fab fa-html5 text-3xl sm:text-5xl text-orange-500 mb-3 sm:mb-4"></i>
-                            <p class="font-semibold text-xs sm:text-base">HTML5</p>
+                        <div class="card-hover text-center p-3 sm:p-4 lg:p-6 bg-gray-50 dark:bg-gray-800 rounded-lg">
+                            <i class="fab fa-html5 text-2xl sm:text-3xl lg:text-5xl text-orange-500 mb-2 sm:mb-3 lg:mb-4"></i>
+                            <p class="font-semibold text-xs sm:text-sm lg:text-base">HTML5</p>
                         </div>
-                        <div class="card-hover text-center p-4 sm:p-6 bg-gray-50 dark:bg-gray-800 rounded-lg">
-                            <i class="fab fa-css3-alt text-3xl sm:text-5xl text-blue-500 mb-3 sm:mb-4"></i>
-                            <p class="font-semibold text-xs sm:text-base">CSS3</p>
+                        <div class="card-hover text-center p-3 sm:p-4 lg:p-6 bg-gray-50 dark:bg-gray-800 rounded-lg">
+                            <i class="fab fa-css3-alt text-2xl sm:text-3xl lg:text-5xl text-blue-500 mb-2 sm:mb-3 lg:mb-4"></i>
+                            <p class="font-semibold text-xs sm:text-sm lg:text-base">CSS3</p>
                         </div>
-                        <div class="card-hover text-center p-4 sm:p-6 bg-gray-50 dark:bg-gray-800 rounded-lg">
-                            <i class="fab fa-js-square text-3xl sm:text-5xl text-yellow-500 mb-3 sm:mb-4"></i>
-                            <p class="font-semibold text-xs sm:text-base">JavaScript</p>
+                        <div class="card-hover text-center p-3 sm:p-4 lg:p-6 bg-gray-50 dark:bg-gray-800 rounded-lg">
+                            <i class="fab fa-js-square text-2xl sm:text-3xl lg:text-5xl text-yellow-500 mb-2 sm:mb-3 lg:mb-4"></i>
+                            <p class="font-semibold text-xs sm:text-sm lg:text-base">JavaScript</p>
                         </div>
-                        <div class="card-hover text-center p-4 sm:p-6 bg-gray-50 dark:bg-gray-800 rounded-lg">
-                            <i class="fas fa-shield-alt text-3xl sm:text-5xl text-red-600 mb-3 sm:mb-4"></i>
-                            <p class="font-semibold text-xs sm:text-base">Security</p>
+                        <div class="card-hover text-center p-3 sm:p-4 lg:p-6 bg-gray-50 dark:bg-gray-800 rounded-lg">
+                            <i class="fas fa-shield-alt text-2xl sm:text-3xl lg:text-5xl text-red-600 mb-2 sm:mb-3 lg:mb-4"></i>
+                            <p class="font-semibold text-xs sm:text-sm lg:text-base">Security</p>
                         </div>
                     </div>
                 </div>
@@ -859,48 +925,48 @@
 
     <!-- Contact Section -->
     <section id="contact" class="section gradient-bg pt-20">
-        <div class="container mx-auto px-4 sm:px-6 text-center">
+        <div class="container mx-auto text-center">
             <div class="max-w-4xl mx-auto">
-                <h2 class="text-3xl sm:text-5xl font-bold mb-4 text-white">
+                <h2 class="text-2xl sm:text-4xl lg:text-5xl font-bold mb-4 text-white">
                     <span class="fa-content">تماس با من</span>
                     <span class="en-content hidden">Get In Touch</span>
                 </h2>
                 <div class="w-20 h-1 bg-white mx-auto mb-6 sm:mb-8"></div>
-                <p class="text-lg sm:text-xl text-gray-300 mb-8 sm:mb-12 px-4">
+                <p class="text-sm sm:text-lg lg:text-xl text-gray-300 mb-8 sm:mb-12 px-4">
                     <span class="fa-content">برای همکاری، مشاوره یا هر گونه سوال با من در تماس باشید</span>
                     <span class="en-content hidden">Feel free to reach out for collaboration, consultation or any questions</span>
                 </p>
-                <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 mb-8 sm:mb-12">
-                    <div class="card-hover glass-effect p-6 sm:p-8 rounded-lg text-center">
-                        <i class="fas fa-envelope text-3xl sm:text-4xl text-primary mb-3 sm:mb-4"></i>
-                        <h3 class="text-lg sm:text-xl font-bold text-white mb-2">Email</h3>
-                        <p class="text-gray-300 text-sm sm:text-base break-all">matinmok02@gmail.com</p>
+                <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8 mb-8 sm:mb-12">
+                    <div class="card-hover glass-effect p-4 sm:p-6 lg:p-8 rounded-lg text-center">
+                        <i class="fas fa-envelope text-2xl sm:text-3xl lg:text-4xl text-primary mb-2 sm:mb-3 lg:mb-4"></i>
+                        <h3 class="text-sm sm:text-lg lg:text-xl font-bold text-white mb-2">Email</h3>
+                        <p class="text-gray-300 text-xs sm:text-sm lg:text-base break-all">matinmok02@gmail.com</p>
                     </div>
-                    <div class="card-hover glass-effect p-6 sm:p-8 rounded-lg text-center">
-                        <i class="fas fa-phone text-3xl sm:text-4xl text-primary mb-3 sm:mb-4"></i>
-                        <h3 class="text-lg sm:text-xl font-bold text-white mb-2">
+                    <div class="card-hover glass-effect p-4 sm:p-6 lg:p-8 rounded-lg text-center">
+                        <i class="fas fa-phone text-2xl sm:text-3xl lg:text-4xl text-primary mb-2 sm:mb-3 lg:mb-4"></i>
+                        <h3 class="text-sm sm:text-lg lg:text-xl font-bold text-white mb-2">
                             <span class="fa-content">تلفن</span>
                             <span class="en-content hidden">Phone</span>
                         </h3>
-                        <p class="text-gray-300 text-sm sm:text-base">+98 922 733 4601</p>
+                        <p class="text-gray-300 text-xs sm:text-sm lg:text-base">+98 922 733 4601</p>
                     </div>
-                    <div class="card-hover glass-effect p-6 sm:p-8 rounded-lg text-center sm:col-span-2 lg:col-span-1">
-                        <i class="fas fa-globe text-3xl sm:text-4xl text-primary mb-3 sm:mb-4"></i>
-                        <h3 class="text-lg sm:text-xl font-bold text-white mb-2">
+                    <div class="card-hover glass-effect p-4 sm:p-6 lg:p-8 rounded-lg text-center sm:col-span-2 lg:col-span-1">
+                        <i class="fas fa-globe text-2xl sm:text-3xl lg:text-4xl text-primary mb-2 sm:mb-3 lg:mb-4"></i>
+                        <h3 class="text-sm sm:text-lg lg:text-xl font-bold text-white mb-2">
                             <span class="fa-content">وب‌سایت</span>
                             <span class="en-content hidden">Website</span>
                         </h3>
-                        <p class="text-gray-300 text-sm sm:text-base">brandiico.ir</p>
+                        <p class="text-gray-300 text-xs sm:text-sm lg:text-base">brandiico.ir</p>
                     </div>
                 </div>
-                <div class="flex justify-center space-x-6 sm:space-x-8 space-x-reverse">
-                    <a href="https://www.linkedin.com/in/matinmokhtar" target="_blank" class="card-hover glass-effect p-3 sm:p-4 rounded-full text-white hover:text-primary transition-colors text-xl sm:text-2xl">
+                <div class="flex justify-center space-x-4 sm:space-x-6 lg:space-x-8 space-x-reverse">
+                    <a href="https://www.linkedin.com/in/matinmokhtar" target="_blank" class="card-hover glass-effect p-3 sm:p-4 rounded-full text-white hover:text-primary transition-colors text-lg sm:text-xl lg:text-2xl">
                         <i class="fab fa-linkedin"></i>
                     </a>
-                    <a href="mailto:matinmok02@gmail.com" class="card-hover glass-effect p-3 sm:p-4 rounded-full text-white hover:text-primary transition-colors text-xl sm:text-2xl">
+                    <a href="mailto:matinmok02@gmail.com" class="card-hover glass-effect p-3 sm:p-4 rounded-full text-white hover:text-primary transition-colors text-lg sm:text-xl lg:text-2xl">
                         <i class="fas fa-envelope"></i>
                     </a>
-                    <a href="https://brandiico.ir" target="_blank" class="card-hover glass-effect p-3 sm:p-4 rounded-full text-white hover:text-primary transition-colors text-xl sm:text-2xl">
+                    <a href="https://brandiico.ir" target="_blank" class="card-hover glass-effect p-3 sm:p-4 rounded-full text-white hover:text-primary transition-colors text-lg sm:text-xl lg:text-2xl">
                         <i class="fas fa-globe"></i>
                     </a>
                 </div>
