@@ -188,6 +188,8 @@
             position: relative;
             transition: all 0.4s ease;
             font-size: 16px;
+            padding: 0.5rem 0;
+            margin: 0 1rem;
         }
 
         .nav-link::after {
@@ -340,11 +342,68 @@
             color: #60a5fa;
         }
 
+        /* Header Navigation Spacing */
+        .nav-container {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 0;
+        }
+
+        .header-controls {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        /* Social Icons Spacing */
+        .social-icons {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        .social-icon {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 3rem;
+            height: 3rem;
+            transition: all 0.3s ease;
+        }
+
+        .contact-social-icons {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 1.5rem;
+        }
+
+        .contact-social-icon {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0.75rem;
+            border-radius: 50%;
+            transition: all 0.3s ease;
+        }
+
         /* Responsive Design */
         @media (max-width: 1024px) {
             .container {
                 padding-left: 1.5rem;
                 padding-right: 1.5rem;
+            }
+            
+            .nav-link {
+                margin: 0 0.5rem;
+                font-size: 14px;
             }
         }
 
@@ -398,8 +457,21 @@
                 box-shadow: 0 8px 20px rgba(96, 165, 250, 0.15);
             }
             
-            .nav-link {
-                font-size: 14px;
+            .social-icons {
+                gap: 1.5rem;
+            }
+            
+            .social-icon {
+                width: 2.5rem;
+                height: 2.5rem;
+            }
+            
+            .contact-social-icons {
+                gap: 1rem;
+            }
+            
+            .header-controls {
+                gap: 0.5rem;
             }
         }
 
@@ -424,6 +496,19 @@
             .timeline-dot {
                 left: 1rem;
             }
+            
+            .social-icons {
+                gap: 1rem;
+            }
+            
+            .social-icon {
+                width: 2rem;
+                height: 2rem;
+            }
+            
+            .contact-social-icons {
+                gap: 0.75rem;
+            }
         }
 
         @media (max-width: 480px) {
@@ -439,6 +524,10 @@
             .mobile-nav-link {
                 font-size: 1.25rem;
                 padding: 0.75rem 1.5rem;
+            }
+            
+            .header-controls {
+                gap: 0.25rem;
             }
         }
 
@@ -478,25 +567,29 @@
     <!-- Navigation -->
     <nav class="fixed top-0 w-full z-50 glass-effect transition-all duration-500">
         <div class="container mx-auto py-3">
-            <div class="flex justify-between items-center">
+            <div class="nav-container justify-between">
                 <div class="text-xl sm:text-2xl font-bold gradient-text">
                     <span class="fa-content">متین مختاری</span>
                     <span class="en-content hidden">Matin Mokhtari</span>
                 </div>
-                <div class="hidden lg:flex space-x-6 xl:space-x-8 space-x-reverse">
-                    <a href="#home" class="nav-link hover:text-primary transition-colors fa-content">خانه</a>
-                    <a href="#about" class="nav-link hover:text-primary transition-colors fa-content">درباره من</a>
-                    <a href="#experience" class="nav-link hover:text-primary transition-colors fa-content">تجربه</a>
-                    <a href="#skills" class="nav-link hover:text-primary transition-colors fa-content">مهارت‌ها</a>
-                    <a href="#contact" class="nav-link hover:text-primary transition-colors fa-content">تماس</a>
-                    
-                    <a href="#home" class="nav-link hover:text-primary transition-colors en-content hidden">Home</a>
-                    <a href="#about" class="nav-link hover:text-primary transition-colors en-content hidden">About</a>
-                    <a href="#experience" class="nav-link hover:text-primary transition-colors en-content hidden">Experience</a>
-                    <a href="#skills" class="nav-link hover:text-primary transition-colors en-content hidden">Skills</a>
-                    <a href="#contact" class="nav-link hover:text-primary transition-colors en-content hidden">Contact</a>
+                
+                <div class="hidden lg:block">
+                    <div class="nav-links">
+                        <a href="#home" class="nav-link hover:text-primary transition-colors fa-content">خانه</a>
+                        <a href="#about" class="nav-link hover:text-primary transition-colors fa-content">درباره من</a>
+                        <a href="#experience" class="nav-link hover:text-primary transition-colors fa-content">تجربه</a>
+                        <a href="#skills" class="nav-link hover:text-primary transition-colors fa-content">مهارت‌ها</a>
+                        <a href="#contact" class="nav-link hover:text-primary transition-colors fa-content">تماس</a>
+                        
+                        <a href="#home" class="nav-link hover:text-primary transition-colors en-content hidden">Home</a>
+                        <a href="#about" class="nav-link hover:text-primary transition-colors en-content hidden">About</a>
+                        <a href="#experience" class="nav-link hover:text-primary transition-colors en-content hidden">Experience</a>
+                        <a href="#skills" class="nav-link hover:text-primary transition-colors en-content hidden">Skills</a>
+                        <a href="#contact" class="nav-link hover:text-primary transition-colors en-content hidden">Contact</a>
+                    </div>
                 </div>
-                <div class="flex items-center space-x-3 sm:space-x-4 space-x-reverse">
+                
+                <div class="header-controls">
                     <button id="lang-toggle" class="px-3 py-2 sm:px-4 sm:py-2 bg-primary text-white rounded-lg hover:bg-secondary transition-all duration-300 transform hover:scale-105 text-sm sm:text-base">
                         <span class="fa-content">EN</span>
                         <span class="en-content hidden">فا</span>
@@ -551,7 +644,7 @@
                 <span class="fa-content">۸ سال تجربه در بازاریابی دیجیتال، برندسازی و توسعه وب. مدیرعامل برندیکو و متخصص استراتژی‌های بازاریابی نوین</span>
                 <span class="en-content hidden">8 years experience in digital marketing, branding and web development. CEO of Brandico and specialist in modern marketing strategies</span>
             </p>
-            <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4 sm:space-x-reverse justify-center items-center px-4">
+            <div class="flex flex-col sm:flex-row gap-4 justify-center items-center px-4 mb-8 sm:mb-12">
                 <a href="#experience" class="w-full sm:w-auto bg-primary text-white px-6 sm:px-8 py-3 sm:py-4 rounded-lg text-sm sm:text-base font-semibold hover:bg-secondary transition-all duration-300 transform hover:scale-105 text-center">
                     <span class="fa-content">مشاهده نمونه کارها</span>
                     <span class="en-content hidden">View My Work</span>
@@ -561,15 +654,15 @@
                     <span class="en-content hidden">Contact Me</span>
                 </a>
             </div>
-            <div class="flex justify-center space-x-6 space-x-reverse mt-8 sm:mt-12">
-                <a href="https://www.linkedin.com/in/matinmokhtar" target="_blank" class="text-white hover:text-primary transition-all duration-300 text-xl sm:text-2xl transform hover:scale-110">
-                    <i class="fab fa-linkedin"></i>
+            <div class="social-icons">
+                <a href="https://www.linkedin.com/in/matinmokhtar" target="_blank" class="social-icon text-white hover:text-primary transition-all duration-300 transform hover:scale-110">
+                    <i class="fab fa-linkedin text-xl sm:text-2xl"></i>
                 </a>
-                <a href="mailto:matinmok02@gmail.com" class="text-white hover:text-primary transition-all duration-300 text-xl sm:text-2xl transform hover:scale-110">
-                    <i class="fas fa-envelope"></i>
+                <a href="mailto:matinmok02@gmail.com" class="social-icon text-white hover:text-primary transition-all duration-300 transform hover:scale-110">
+                    <i class="fas fa-envelope text-xl sm:text-2xl"></i>
                 </a>
-                <a href="https://brandiico.ir" target="_blank" class="text-white hover:text-primary transition-all duration-300 text-xl sm:text-2xl transform hover:scale-110">
-                    <i class="fas fa-globe"></i>
+                <a href="https://brandiico.ir" target="_blank" class="social-icon text-white hover:text-primary transition-all duration-300 transform hover:scale-110">
+                    <i class="fas fa-globe text-xl sm:text-2xl"></i>
                 </a>
             </div>
         </div>
@@ -959,15 +1052,15 @@
                         <p class="text-gray-300 text-xs sm:text-sm lg:text-base">brandiico.ir</p>
                     </div>
                 </div>
-                <div class="flex justify-center space-x-4 sm:space-x-6 lg:space-x-8 space-x-reverse">
-                    <a href="https://www.linkedin.com/in/matinmokhtar" target="_blank" class="card-hover glass-effect p-3 sm:p-4 rounded-full text-white hover:text-primary transition-colors text-lg sm:text-xl lg:text-2xl">
-                        <i class="fab fa-linkedin"></i>
+                <div class="contact-social-icons">
+                    <a href="https://www.linkedin.com/in/matinmokhtar" target="_blank" class="contact-social-icon glass-effect text-white hover:text-primary transition-colors">
+                        <i class="fab fa-linkedin text-lg sm:text-xl lg:text-2xl"></i>
                     </a>
-                    <a href="mailto:matinmok02@gmail.com" class="card-hover glass-effect p-3 sm:p-4 rounded-full text-white hover:text-primary transition-colors text-lg sm:text-xl lg:text-2xl">
-                        <i class="fas fa-envelope"></i>
+                    <a href="mailto:matinmok02@gmail.com" class="contact-social-icon glass-effect text-white hover:text-primary transition-colors">
+                        <i class="fas fa-envelope text-lg sm:text-xl lg:text-2xl"></i>
                     </a>
-                    <a href="https://brandiico.ir" target="_blank" class="card-hover glass-effect p-3 sm:p-4 rounded-full text-white hover:text-primary transition-colors text-lg sm:text-xl lg:text-2xl">
-                        <i class="fas fa-globe"></i>
+                    <a href="https://brandiico.ir" target="_blank" class="contact-social-icon glass-effect text-white hover:text-primary transition-colors">
+                        <i class="fas fa-globe text-lg sm:text-xl lg:text-2xl"></i>
                     </a>
                 </div>
             </div>
@@ -980,7 +1073,7 @@
     </div>
 
     <!-- Contact Options -->
-    <div class="fixed bottom-20 sm:bottom-24 right-5 sm:right-8 flex flex-col space-y-3 transition-all duration-300 opacity-0 pointer-events-none" id="contactOptions">
+    <div class="fixed bottom-20 sm:bottom-24 right-5 sm:right-8 flex flex-col gap-3 transition-all duration-300 opacity-0 pointer-events-none" id="contactOptions">
         <a href="https://wa.me/989227334601" target="_blank" class="w-10 h-10 sm:w-12 sm:h-12 bg-green-500 rounded-full flex items-center justify-center text-white hover:scale-110 transition-transform">
             <i class="fab fa-whatsapp text-lg sm:text-xl"></i>
         </a>
