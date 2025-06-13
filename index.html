@@ -42,11 +42,11 @@
         }
 
         .card-hover {
-            transition: all 0.3s ease;
+            transition: all 0.4s ease;
         }
 
         .card-hover:hover {
-            transform: translateY(-10px);
+            transform: translateY(-10px) scale(1.02);
             box-shadow: 0 25px 50px rgba(96, 165, 250, 0.2);
         }
 
@@ -55,8 +55,8 @@
         }
 
         @keyframes float {
-            0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-20px); }
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(5deg); }
         }
 
         .typing-animation::after {
@@ -90,6 +90,21 @@
 
         .timeline-item {
             position: relative;
+            animation: slideInUp 0.8s ease forwards;
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        .timeline-item:nth-child(1) { animation-delay: 0.1s; }
+        .timeline-item:nth-child(2) { animation-delay: 0.2s; }
+        .timeline-item:nth-child(3) { animation-delay: 0.3s; }
+        .timeline-item:nth-child(4) { animation-delay: 0.4s; }
+
+        @keyframes slideInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         .timeline-dot {
@@ -103,6 +118,19 @@
             border-radius: 50%;
             transform: translateX(-50%);
             z-index: 10;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% {
+                box-shadow: 0 0 0 0 rgba(96, 165, 250, 0.7);
+            }
+            70% {
+                box-shadow: 0 0 0 10px rgba(96, 165, 250, 0);
+            }
+            100% {
+                box-shadow: 0 0 0 0 rgba(96, 165, 250, 0);
+            }
         }
 
         .particles {
@@ -126,7 +154,7 @@
 
         @keyframes particle-float {
             0% {
-                transform: translateY(100vh) translateX(0);
+                transform: translateY(100vh) translateX(0) rotate(0deg);
                 opacity: 0;
             }
             10% {
@@ -136,14 +164,14 @@
                 opacity: 1;
             }
             100% {
-                transform: translateY(-100px) translateX(100px);
+                transform: translateY(-100px) translateX(100px) rotate(360deg);
                 opacity: 0;
             }
         }
 
         .nav-link {
             position: relative;
-            transition: all 0.3s ease;
+            transition: all 0.4s ease;
         }
 
         .nav-link::after {
@@ -154,11 +182,15 @@
             width: 0;
             height: 2px;
             background: #60a5fa;
-            transition: width 0.3s ease;
+            transition: width 0.4s ease;
         }
 
         .nav-link:hover::after {
             width: 100%;
+        }
+
+        .nav-link:hover {
+            transform: translateY(-2px);
         }
 
         .section {
@@ -174,12 +206,26 @@
             z-index: 1000;
             background: linear-gradient(45deg, #60a5fa, #3b82f6);
             box-shadow: 0 8px 32px rgba(96, 165, 250, 0.3);
-            transition: all 0.3s ease;
+            transition: all 0.4s ease;
+            animation: fabBounce 3s infinite;
+        }
+
+        @keyframes fabBounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateY(0) scale(1);
+            }
+            40% {
+                transform: translateY(-5px) scale(1.05);
+            }
+            60% {
+                transform: translateY(-3px) scale(1.02);
+            }
         }
 
         .contact-fab:hover {
-            transform: scale(1.1);
+            transform: scale(1.1) rotate(10deg);
             box-shadow: 0 12px 40px rgba(96, 165, 250, 0.4);
+            animation: none;
         }
 
         .dark {
@@ -191,6 +237,44 @@
             background: rgba(255, 255, 255, 0.1);
             backdrop-filter: blur(10px);
             border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        /* Enhanced animations for elements */
+        .skill-item {
+            animation: fadeInLeft 0.8s ease forwards;
+            opacity: 0;
+            transform: translateX(-30px);
+        }
+
+        .skill-item:nth-child(1) { animation-delay: 0.1s; }
+        .skill-item:nth-child(2) { animation-delay: 0.2s; }
+        .skill-item:nth-child(3) { animation-delay: 0.3s; }
+
+        @keyframes fadeInLeft {
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .hero-content > * {
+            animation: fadeInUp 1s ease forwards;
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        .hero-content > *:nth-child(1) { animation-delay: 0.2s; }
+        .hero-content > *:nth-child(2) { animation-delay: 0.4s; }
+        .hero-content > *:nth-child(3) { animation-delay: 0.6s; }
+        .hero-content > *:nth-child(4) { animation-delay: 0.8s; }
+        .hero-content > *:nth-child(5) { animation-delay: 1s; }
+        .hero-content > *:nth-child(6) { animation-delay: 1.2s; }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         @media (max-width: 768px) {
@@ -218,8 +302,8 @@
     </div>
 
     <!-- Navigation -->
-    <nav class="fixed top-0 w-full z-50 glass-effect transition-all duration-300">
-        <div class="container mx-auto px-6 py-4">
+    <nav class="fixed top-0 w-full z-50 glass-effect transition-all duration-500">
+        <div class="container mx-auto px-6 py-6">
             <div class="flex justify-between items-center">
                 <div class="text-2xl font-bold gradient-text">
                     <span class="fa-content">متین مختاری</span>
@@ -239,15 +323,11 @@
                     <a href="#contact" class="nav-link hover:text-primary transition-colors en-content hidden">Contact</a>
                 </div>
                 <div class="flex items-center space-x-4 space-x-reverse">
-                    <button id="lang-toggle" class="px-3 py-1 bg-primary text-white rounded-lg hover:bg-secondary transition-colors">
+                    <button id="lang-toggle" class="px-4 py-2 bg-primary text-white rounded-lg hover:bg-secondary transition-all duration-300 transform hover:scale-105">
                         <span class="fa-content">EN</span>
                         <span class="en-content hidden">فا</span>
                     </button>
-                    <button id="theme-toggle" class="p-2 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors">
-                        <i class="fas fa-sun text-yellow-500 dark:hidden"></i>
-                        <i class="fas fa-moon text-blue-400 hidden dark:block"></i>
-                    </button>
-                    <button id="mobile-menu" class="md:hidden p-2">
+                    <button id="mobile-menu" class="md:hidden p-2 hover:bg-gray-200 dark:hover:bg-gray-700 rounded-lg transition-all duration-300">
                         <i class="fas fa-bars"></i>
                     </button>
                 </div>
@@ -257,7 +337,7 @@
 
     <!-- Hero Section -->
     <section id="home" class="section gradient-bg relative overflow-hidden">
-        <div class="container mx-auto px-6 text-center relative z-10">
+        <div class="container mx-auto px-6 text-center relative z-10 hero-content">
             <div class="floating-element">
                 <div class="w-40 h-40 mx-auto mb-8 rounded-full bg-gradient-to-r from-primary to-secondary p-1">
                     <div class="w-full h-full rounded-full bg-white dark:bg-dark flex items-center justify-center">
@@ -288,13 +368,13 @@
                 </a>
             </div>
             <div class="flex justify-center space-x-6 space-x-reverse mt-12">
-                <a href="https://www.linkedin.com/in/matinmokhtar" target="_blank" class="text-white hover:text-primary transition-colors text-2xl">
+                <a href="https://www.linkedin.com/in/matinmokhtar" target="_blank" class="text-white hover:text-primary transition-all duration-300 text-2xl transform hover:scale-110">
                     <i class="fab fa-linkedin"></i>
                 </a>
-                <a href="mailto:matinmok02@gmail.com" class="text-white hover:text-primary transition-colors text-2xl">
+                <a href="mailto:matinmok02@gmail.com" class="text-white hover:text-primary transition-all duration-300 text-2xl transform hover:scale-110">
                     <i class="fas fa-envelope"></i>
                 </a>
-                <a href="https://brandiico.ir" target="_blank" class="text-white hover:text-primary transition-colors text-2xl">
+                <a href="https://brandiico.ir" target="_blank" class="text-white hover:text-primary transition-all duration-300 text-2xl transform hover:scale-110">
                     <i class="fas fa-globe"></i>
                 </a>
             </div>
@@ -731,7 +811,7 @@
     </div>
 
     <script>
-        // Dark mode toggle
+        // Dark mode toggle (removed theme toggle button, but keeping dark mode detection)
         if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
             document.documentElement.classList.add('dark');
         }
@@ -742,11 +822,6 @@
             } else {
                 document.documentElement.classList.remove('dark');
             }
-        });
-
-        const themeToggle = document.getElementById('theme-toggle');
-        themeToggle.addEventListener('click', () => {
-            document.documentElement.classList.toggle('dark');
         });
 
         // Language toggle
