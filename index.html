@@ -172,6 +172,7 @@
         .nav-link {
             position: relative;
             transition: all 0.4s ease;
+            font-size: 16px;
         }
 
         .nav-link::after {
@@ -239,7 +240,6 @@
             border: 1px solid rgba(255, 255, 255, 0.2);
         }
 
-        /* Enhanced animations for elements */
         .skill-item {
             animation: fadeInLeft 0.8s ease forwards;
             opacity: 0;
@@ -277,12 +277,108 @@
             }
         }
 
+        /* Mobile Menu Styles */
+        .mobile-menu {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background: rgba(0, 0, 0, 0.9);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            transform: translateX(-100%);
+            transition: transform 0.3s ease;
+        }
+
+        .mobile-menu.active {
+            transform: translateX(0);
+        }
+
+        .mobile-menu-content {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+            gap: 2rem;
+        }
+
+        .mobile-nav-link {
+            color: white;
+            text-decoration: none;
+            font-size: 1.5rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            padding: 1rem 2rem;
+            border-radius: 0.5rem;
+        }
+
+        .mobile-nav-link:hover {
+            background: rgba(96, 165, 250, 0.2);
+            color: #60a5fa;
+        }
+
+        /* Responsive Modifications */
         @media (max-width: 768px) {
             .timeline-line::before {
                 left: 20px;
             }
             .timeline-dot {
                 left: 20px;
+            }
+            .timeline-item .grid {
+                grid-template-columns: 1fr;
+                gap: 0;
+                padding-left: 3rem;
+            }
+            .timeline-item .md\\:text-right {
+                text-align: left;
+            }
+            .section {
+                min-height: auto;
+                padding: 2rem 0;
+            }
+            .hero-content {
+                padding: 2rem 0;
+            }
+            .contact-fab {
+                bottom: 20px;
+                right: 20px;
+                width: 56px;
+                height: 56px;
+            }
+            .particles {
+                display: none;
+            }
+            .floating-element {
+                animation: none;
+            }
+            .card-hover:hover {
+                transform: none;
+                box-shadow: 0 10px 25px rgba(96, 165, 250, 0.1);
+            }
+        }
+
+        @media (max-width: 640px) {
+            .nav-link {
+                font-size: 14px;
+            }
+            .section {
+                padding: 1rem 0;
+            }
+        }
+
+        /* Touch device optimizations */
+        @media (hover: none) and (pointer: coarse) {
+            .card-hover:hover {
+                transform: none;
+            }
+            .nav-link:hover::after {
+                width: 0;
+            }
+            .nav-link:hover {
+                transform: none;
             }
         }
     </style>
@@ -303,13 +399,13 @@
 
     <!-- Navigation -->
     <nav class="fixed top-0 w-full z-50 glass-effect transition-all duration-500">
-        <div class="container mx-auto px-6 py-3">
+        <div class="container mx-auto px-4 sm:px-6 py-3">
             <div class="flex justify-between items-center">
-                <div class="text-2xl font-bold gradient-text">
+                <div class="text-xl sm:text-2xl font-bold gradient-text">
                     <span class="fa-content">متین مختاری</span>
                     <span class="en-content hidden">Matin Mokhtari</span>
                 </div>
-                <div class="hidden md:flex space-x-8 space-x-reverse">
+                <div class="hidden lg:flex space-x-6 xl:space-x-8 space-x-reverse">
                     <a href="#home" class="nav-link hover:text-primary transition-colors fa-content">خانه</a>
                     <a href="#about" class="nav-link hover:text-primary transition-colors fa-content">درباره من</a>
                     <a href="#experience" class="nav-link hover:text-primary transition-colors fa-content">تجربه</a>
@@ -322,59 +418,79 @@
                     <a href="#skills" class="nav-link hover:text-primary transition-colors en-content hidden">Skills</a>
                     <a href="#contact" class="nav-link hover:text-primary transition-colors en-content hidden">Contact</a>
                 </div>
-                <div class="flex items-center space-x-4 space-x-reverse">
-                    <button id="lang-toggle" class="px-4 py-2 bg-primary text-white rounded-lg hover:bg-secondary transition-all duration-300 transform hover:scale-105">
+                <div class="flex items-center space-x-3 sm:space-x-4 space-x-reverse">
+                    <button id="lang-toggle" class="px-3 py-2 sm:px-4 sm:py-2 bg-primary text-white rounded-lg hover:bg-secondary transition-all duration-300 transform hover:scale-105 text-sm sm:text-base">
                         <span class="fa-content">EN</span>
                         <span class="en-content hidden">فا</span>
                     </button>
-                    <button id="mobile-menu" class="md:hidden p-2 hover:bg-gray-200 dark:hover:bg-gray-700 rounded-lg transition-all duration-300">
-                        <i class="fas fa-bars"></i>
+                    <button id="mobile-menu-btn" class="lg:hidden p-2 hover:bg-gray-200 dark:hover:bg-gray-700 rounded-lg transition-all duration-300">
+                        <i class="fas fa-bars text-lg"></i>
                     </button>
                 </div>
             </div>
         </div>
     </nav>
 
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="mobile-menu lg:hidden">
+        <div class="mobile-menu-content">
+            <button id="close-mobile-menu" class="absolute top-6 right-6 text-white text-2xl">
+                <i class="fas fa-times"></i>
+            </button>
+            <a href="#home" class="mobile-nav-link fa-content" data-section="home">خانه</a>
+            <a href="#about" class="mobile-nav-link fa-content" data-section="about">درباره من</a>
+            <a href="#experience" class="mobile-nav-link fa-content" data-section="experience">تجربه</a>
+            <a href="#skills" class="mobile-nav-link fa-content" data-section="skills">مهارت‌ها</a>
+            <a href="#contact" class="mobile-nav-link fa-content" data-section="contact">تماس</a>
+            
+            <a href="#home" class="mobile-nav-link en-content hidden" data-section="home">Home</a>
+            <a href="#about" class="mobile-nav-link en-content hidden" data-section="about">About</a>
+            <a href="#experience" class="mobile-nav-link en-content hidden" data-section="experience">Experience</a>
+            <a href="#skills" class="mobile-nav-link en-content hidden" data-section="skills">Skills</a>
+            <a href="#contact" class="mobile-nav-link en-content hidden" data-section="contact">Contact</a>
+        </div>
+    </div>
+
     <!-- Hero Section -->
     <section id="home" class="section gradient-bg relative overflow-hidden pt-20">
-        <div class="container mx-auto px-6 text-center relative z-10 hero-content">
+        <div class="container mx-auto px-4 sm:px-6 text-center relative z-10 hero-content">
             <div class="floating-element">
-                <div class="w-40 h-40 mx-auto mb-8 rounded-full bg-gradient-to-r from-primary to-secondary p-1">
+                <div class="w-32 h-32 sm:w-40 sm:h-40 mx-auto mb-6 sm:mb-8 rounded-full bg-gradient-to-r from-primary to-secondary p-1">
                     <div class="w-full h-full rounded-full bg-white dark:bg-dark flex items-center justify-center">
-                        <i class="fas fa-user-tie text-6xl text-primary"></i>
+                        <i class="fas fa-user-tie text-4xl sm:text-6xl text-primary"></i>
                     </div>
                 </div>
             </div>
-            <h1 class="text-6xl md:text-8xl font-bold text-white mb-6">
+            <h1 class="text-4xl sm:text-6xl lg:text-8xl font-bold text-white mb-4 sm:mb-6 leading-tight">
                 <span class="fa-content">سلام، من متین هستم</span>
                 <span class="en-content hidden">Hi, I'm Matin</span>
             </h1>
-            <p id="typing-text" class="text-2xl md:text-3xl text-blue-200 mb-8 typing-animation">
+            <p id="typing-text" class="text-xl sm:text-2xl lg:text-3xl text-blue-200 mb-6 sm:mb-8 typing-animation">
                 <span class="fa-content">بازاریاب دیجیتال</span>
                 <span class="en-content hidden">Digital Marketer</span>
             </p>
-            <p class="text-lg text-gray-300 mb-12 max-w-3xl mx-auto leading-relaxed">
+            <p class="text-base sm:text-lg text-gray-300 mb-8 sm:mb-12 max-w-3xl mx-auto leading-relaxed px-4">
                 <span class="fa-content">۸ سال تجربه در بازاریابی دیجیتال، برندسازی و توسعه وب. مدیرعامل برندیکو و متخصص استراتژی‌های بازاریابی نوین</span>
                 <span class="en-content hidden">8 years experience in digital marketing, branding and web development. CEO of Brandico and specialist in modern marketing strategies</span>
             </p>
-            <div class="space-x-4 space-x-reverse">
-                <a href="#experience" class="inline-block bg-primary text-white px-8 py-4 rounded-lg text-lg font-semibold hover:bg-secondary transition-all duration-300 transform hover:scale-105">
+            <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4 sm:space-x-reverse justify-center items-center">
+                <a href="#experience" class="w-full sm:w-auto bg-primary text-white px-6 sm:px-8 py-3 sm:py-4 rounded-lg text-base sm:text-lg font-semibold hover:bg-secondary transition-all duration-300 transform hover:scale-105">
                     <span class="fa-content">مشاهده نمونه کارها</span>
                     <span class="en-content hidden">View My Work</span>
                 </a>
-                <a href="#contact" class="inline-block border-2 border-primary text-primary px-8 py-4 rounded-lg text-lg font-semibold hover:bg-primary hover:text-white transition-all duration-300">
+                <a href="#contact" class="w-full sm:w-auto border-2 border-primary text-primary px-6 sm:px-8 py-3 sm:py-4 rounded-lg text-base sm:text-lg font-semibold hover:bg-primary hover:text-white transition-all duration-300">
                     <span class="fa-content">تماس با من</span>
                     <span class="en-content hidden">Contact Me</span>
                 </a>
             </div>
-            <div class="flex justify-center space-x-6 space-x-reverse mt-12">
-                <a href="https://www.linkedin.com/in/matinmokhtar" target="_blank" class="text-white hover:text-primary transition-all duration-300 text-2xl transform hover:scale-110">
+            <div class="flex justify-center space-x-6 space-x-reverse mt-8 sm:mt-12">
+                <a href="https://www.linkedin.com/in/matinmokhtar" target="_blank" class="text-white hover:text-primary transition-all duration-300 text-xl sm:text-2xl transform hover:scale-110">
                     <i class="fab fa-linkedin"></i>
                 </a>
-                <a href="mailto:matinmok02@gmail.com" class="text-white hover:text-primary transition-all duration-300 text-2xl transform hover:scale-110">
+                <a href="mailto:matinmok02@gmail.com" class="text-white hover:text-primary transition-all duration-300 text-xl sm:text-2xl transform hover:scale-110">
                     <i class="fas fa-envelope"></i>
                 </a>
-                <a href="https://brandiico.ir" target="_blank" class="text-white hover:text-primary transition-all duration-300 text-2xl transform hover:scale-110">
+                <a href="https://brandiico.ir" target="_blank" class="text-white hover:text-primary transition-all duration-300 text-xl sm:text-2xl transform hover:scale-110">
                     <i class="fas fa-globe"></i>
                 </a>
             </div>
@@ -383,41 +499,41 @@
 
     <!-- About Section -->
     <section id="about" class="section bg-white dark:bg-darkSecondary pt-20">
-        <div class="container mx-auto px-6">
-            <div class="text-center mb-16">
-                <h2 class="text-5xl font-bold mb-4 gradient-text">
+        <div class="container mx-auto px-4 sm:px-6">
+            <div class="text-center mb-12 sm:mb-16">
+                <h2 class="text-3xl sm:text-5xl font-bold mb-4 gradient-text">
                     <span class="fa-content">درباره من</span>
                     <span class="en-content hidden">About Me</span>
                 </h2>
                 <div class="w-20 h-1 bg-primary mx-auto"></div>
             </div>
-            <div class="grid md:grid-cols-2 gap-16 items-center max-w-6xl mx-auto">
-                <div class="order-2 md:order-1">
-                    <h3 class="text-3xl font-bold mb-6 text-gray-800 dark:text-white">
+            <div class="grid lg:grid-cols-2 gap-8 lg:gap-16 items-center max-w-6xl mx-auto">
+                <div class="order-2 lg:order-1">
+                    <h3 class="text-2xl sm:text-3xl font-bold mb-4 sm:mb-6 text-gray-800 dark:text-white">
                         <span class="fa-content">متین مختاری</span>
                         <span class="en-content hidden">Matin Mokhtari</span>
                     </h3>
-                    <p class="text-gray-600 dark:text-gray-300 text-lg leading-relaxed mb-8">
+                    <p class="text-gray-600 dark:text-gray-300 text-base sm:text-lg leading-relaxed mb-6 sm:mb-8">
                         <span class="fa-content">نام من متین مختاری است. من ۸ سال تجربه در بازاریابی دیجیتال و برندسازی دارم. حوزه اصلی تخصص من طراحی و اجرای استراتژی‌های بازاریابی دیجیتال برای برندها است. مهارت‌های قوی در زمینه‌هایی مانند تبلیغات پولی، سئو، رسانه‌های اجتماعی و طراحی وب‌سایت دارم.</span>
                         <span class="en-content hidden">My name is Matin Mokhtari. I have 8 years of experience in digital marketing and brand building. My main area of expertise is designing and implementing digital marketing strategies for brands. I have strong skills in areas like paid advertising, SEO, social media, and website design.</span>
                     </p>
-                    <div class="grid grid-cols-2 gap-6 mb-8">
-                        <div class="text-center p-4 bg-gray-50 dark:bg-gray-800 rounded-lg">
-                            <h4 class="text-2xl font-bold text-primary mb-2">8+</h4>
-                            <p class="text-gray-600 dark:text-gray-300">
+                    <div class="grid grid-cols-2 gap-4 sm:gap-6 mb-6 sm:mb-8">
+                        <div class="text-center p-3 sm:p-4 bg-gray-50 dark:bg-gray-800 rounded-lg">
+                            <h4 class="text-xl sm:text-2xl font-bold text-primary mb-2">8+</h4>
+                            <p class="text-gray-600 dark:text-gray-300 text-sm sm:text-base">
                                 <span class="fa-content">سال تجربه</span>
                                 <span class="en-content hidden">Years Experience</span>
                             </p>
                         </div>
-                        <div class="text-center p-4 bg-gray-50 dark:bg-gray-800 rounded-lg">
-                            <h4 class="text-2xl font-bold text-primary mb-2">50+</h4>
-                            <p class="text-gray-600 dark:text-gray-300">
+                        <div class="text-center p-3 sm:p-4 bg-gray-50 dark:bg-gray-800 rounded-lg">
+                            <h4 class="text-xl sm:text-2xl font-bold text-primary mb-2">50+</h4>
+                            <p class="text-gray-600 dark:text-gray-300 text-sm sm:text-base">
                                 <span class="fa-content">پروژه موفق</span>
                                 <span class="en-content hidden">Successful Projects</span>
                             </p>
                         </div>
                     </div>
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4 text-sm">
                         <div>
                             <h4 class="font-semibold text-primary mb-2">
                                 <span class="fa-content">تخصص:</span>
@@ -454,18 +570,18 @@
                         </div>
                     </div>
                 </div>
-                <div class="order-1 md:order-2">
-                    <div class="relative">
-                        <div class="w-80 h-80 mx-auto rounded-full bg-gradient-to-br from-primary to-secondary p-1">
+                <div class="order-1 lg:order-2">
+                    <div class="relative max-w-sm mx-auto">
+                        <div class="w-64 h-64 sm:w-80 sm:h-80 mx-auto rounded-full bg-gradient-to-br from-primary to-secondary p-1">
                             <div class="w-full h-full rounded-full bg-white dark:bg-darkSecondary flex items-center justify-center">
-                                <i class="fas fa-user-tie text-8xl text-primary"></i>
+                                <i class="fas fa-user-tie text-6xl sm:text-8xl text-primary"></i>
                             </div>
                         </div>
-                        <div class="absolute -top-4 -right-4 w-20 h-20 bg-yellow-400 rounded-full flex items-center justify-center floating-element">
-                            <i class="fas fa-crown text-2xl text-white"></i>
+                        <div class="absolute -top-2 -right-2 sm:-top-4 sm:-right-4 w-16 h-16 sm:w-20 sm:h-20 bg-yellow-400 rounded-full flex items-center justify-center floating-element">
+                            <i class="fas fa-crown text-lg sm:text-2xl text-white"></i>
                         </div>
-                        <div class="absolute -bottom-4 -left-4 w-16 h-16 bg-green-400 rounded-full flex items-center justify-center floating-element" style="animation-delay: 2s;">
-                            <i class="fas fa-chart-line text-xl text-white"></i>
+                        <div class="absolute -bottom-2 -left-2 sm:-bottom-4 sm:-left-4 w-12 h-12 sm:w-16 sm:h-16 bg-green-400 rounded-full flex items-center justify-center floating-element" style="animation-delay: 2s;">
+                            <i class="fas fa-chart-line text-sm sm:text-xl text-white"></i>
                         </div>
                     </div>
                 </div>
@@ -475,34 +591,34 @@
 
     <!-- Experience Section -->
     <section id="experience" class="section bg-gray-50 dark:bg-dark pt-20">
-        <div class="container mx-auto px-6">
-            <div class="text-center mb-16">
-                <h2 class="text-5xl font-bold mb-4 gradient-text">
+        <div class="container mx-auto px-4 sm:px-6">
+            <div class="text-center mb-12 sm:mb-16">
+                <h2 class="text-3xl sm:text-5xl font-bold mb-4 gradient-text">
                     <span class="fa-content">تجربه کاری</span>
                     <span class="en-content hidden">Experience</span>
                 </h2>
                 <div class="w-20 h-1 bg-primary mx-auto mb-6"></div>
-                <p class="text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
+                <p class="text-gray-600 dark:text-gray-300 max-w-2xl mx-auto text-sm sm:text-base">
                     <span class="fa-content">سفر حرفه‌ای من در دنیای بازاریابی دیجیتال و توسعه وب</span>
                     <span class="en-content hidden">My professional journey in digital marketing and web development</span>
                 </p>
             </div>
             <div class="max-w-4xl mx-auto timeline-line">
                 <!-- CEO Brandico -->
-                <div class="timeline-item mb-12">
+                <div class="timeline-item mb-8 sm:mb-12">
                     <div class="timeline-dot"></div>
-                    <div class="grid md:grid-cols-2 gap-8">
+                    <div class="grid md:grid-cols-2 gap-6 sm:gap-8">
                         <div class="md:text-right">
-                            <div class="card-hover bg-white dark:bg-darkSecondary p-6 rounded-lg shadow-lg">
-                                <h3 class="text-xl font-bold text-primary mb-2">
+                            <div class="card-hover bg-white dark:bg-darkSecondary p-4 sm:p-6 rounded-lg shadow-lg">
+                                <h3 class="text-lg sm:text-xl font-bold text-primary mb-2">
                                     <span class="fa-content">مدیرعامل، برندیکو</span>
                                     <span class="en-content hidden">CEO, Brandico</span>
                                 </h3>
-                                <p class="text-gray-600 dark:text-gray-300 mb-4">
+                                <p class="text-gray-600 dark:text-gray-300 mb-3 sm:mb-4 text-sm sm:text-base">
                                     <span class="fa-content">۱۳۹۷ - تاکنون (۸ سال)</span>
                                     <span class="en-content hidden">2018 - Present (8 years)</span>
                                 </p>
-                                <p class="text-gray-700 dark:text-gray-400">
+                                <p class="text-gray-700 dark:text-gray-400 text-sm sm:text-base">
                                     <span class="fa-content">مدیریت و رهبری تیم بازاریابی دیجیتال، توسعه استراتژی‌های برندسازی</span>
                                     <span class="en-content hidden">Leading digital marketing team, developing branding strategies</span>
                                 </p>
@@ -513,21 +629,21 @@
                 </div>
 
                 <!-- RighTel -->
-                <div class="timeline-item mb-12">
+                <div class="timeline-item mb-8 sm:mb-12">
                     <div class="timeline-dot"></div>
-                    <div class="grid md:grid-cols-2 gap-8">
+                    <div class="grid md:grid-cols-2 gap-6 sm:gap-8">
                         <div></div>
                         <div>
-                            <div class="card-hover bg-white dark:bg-darkSecondary p-6 rounded-lg shadow-lg">
-                                <h3 class="text-xl font-bold text-primary mb-2">
+                            <div class="card-hover bg-white dark:bg-darkSecondary p-4 sm:p-6 rounded-lg shadow-lg">
+                                <h3 class="text-lg sm:text-xl font-bold text-primary mb-2">
                                     <span class="fa-content">بازاریابی دیجیتال، رایتل</span>
                                     <span class="en-content hidden">Digital Marketing, RighTel</span>
                                 </h3>
-                                <p class="text-gray-600 dark:text-gray-300 mb-4">
+                                <p class="text-gray-600 dark:text-gray-300 mb-3 sm:mb-4 text-sm sm:text-base">
                                     <span class="fa-content">بهمن ۱۳۹۹ - تاکنون (۴ سال و ۵ ماه)</span>
                                     <span class="en-content hidden">February 2021 - Present (4 years 5 months)</span>
                                 </p>
-                                <p class="text-gray-700 dark:text-gray-400">
+                                <p class="text-gray-700 dark:text-gray-400 text-sm sm:text-base">
                                     <span class="fa-content">مدیریت کمپین‌های دیجیتال، تحلیل داده و بهبود ROI</span>
                                     <span class="en-content hidden">Managing digital campaigns, data analysis and ROI optimization</span>
                                 </p>
@@ -537,20 +653,20 @@
                 </div>
 
                 <!-- Mazandaran University -->
-                <div class="timeline-item mb-12">
+                <div class="timeline-item mb-8 sm:mb-12">
                     <div class="timeline-dot"></div>
-                    <div class="grid md:grid-cols-2 gap-8">
+                    <div class="grid md:grid-cols-2 gap-6 sm:gap-8">
                         <div class="md:text-right">
-                            <div class="card-hover bg-white dark:bg-darkSecondary p-6 rounded-lg shadow-lg">
-                                <h3 class="text-xl font-bold text-primary mb-2">
+                            <div class="card-hover bg-white dark:bg-darkSecondary p-4 sm:p-6 rounded-lg shadow-lg">
+                                <h3 class="text-lg sm:text-xl font-bold text-primary mb-2">
                                     <span class="fa-content">توسعه وب، دانشگاه علم و صنعت مازندران</span>
                                     <span class="en-content hidden">Web Development, Mazandaran University</span>
                                 </h3>
-                                <p class="text-gray-600 dark:text-gray-300 mb-4">
+                                <p class="text-gray-600 dark:text-gray-300 mb-3 sm:mb-4 text-sm sm:text-base">
                                     <span class="fa-content">دی ۱۴۰۰ - ۱۴۰۱</span>
                                     <span class="en-content hidden">January 2022 - 2022</span>
                                 </p>
-                                <p class="text-gray-700 dark:text-gray-400">
+                                <p class="text-gray-700 dark:text-gray-400 text-sm sm:text-base">
                                     <span class="fa-content">طراحی و توسعه سیستم‌های وب دانشگاهی</span>
                                     <span class="en-content hidden">Design and development of university web systems</span>
                                 </p>
@@ -561,21 +677,21 @@
                 </div>
 
                 <!-- Iranmall -->
-                <div class="timeline-item mb-12">
+                <div class="timeline-item mb-8 sm:mb-12">
                     <div class="timeline-dot"></div>
-                    <div class="grid md:grid-cols-2 gap-8">
+                    <div class="grid md:grid-cols-2 gap-6 sm:gap-8">
                         <div></div>
                         <div>
-                            <div class="card-hover bg-white dark:bg-darkSecondary p-6 rounded-lg shadow-lg">
-                                <h3 class="text-xl font-bold text-primary mb-2">
+                            <div class="card-hover bg-white dark:bg-darkSecondary p-4 sm:p-6 rounded-lg shadow-lg">
+                                <h3 class="text-lg sm:text-xl font-bold text-primary mb-2">
                                     <span class="fa-content">توسعه وب، ایران‌مال</span>
                                     <span class="en-content hidden">Web Development, Iranmall</span>
                                 </h3>
-                                <p class="text-gray-600 dark:text-gray-300 mb-4">
+                                <p class="text-gray-600 dark:text-gray-300 mb-3 sm:mb-4 text-sm sm:text-base">
                                     <span class="fa-content">فروردین ۱۳۹۶ - ۱۴۰۰ (۴ سال)</span>
                                     <span class="en-content hidden">April 2017 - 2021 (4 years)</span>
                                 </p>
-                                <p class="text-gray-700 dark:text-gray-400">
+                                <p class="text-gray-700 dark:text-gray-400 text-sm sm:text-base">
                                     <span class="fa-content">توسعه پلتفرم تجارت الکترونیک و بهینه‌سازی عملکرد</span>
                                     <span class="en-content hidden">E-commerce platform development and performance optimization</span>
                                 </p>
@@ -589,61 +705,61 @@
 
     <!-- Skills Section -->
     <section id="skills" class="section bg-white dark:bg-darkSecondary pt-20">
-        <div class="container mx-auto px-6">
-            <div class="text-center mb-16">
-                <h2 class="text-5xl font-bold mb-4 gradient-text">
+        <div class="container mx-auto px-4 sm:px-6">
+            <div class="text-center mb-12 sm:mb-16">
+                <h2 class="text-3xl sm:text-5xl font-bold mb-4 gradient-text">
                     <span class="fa-content">مهارت‌ها و تخصص‌ها</span>
                     <span class="en-content hidden">Skills & Expertise</span>
                 </h2>
                 <div class="w-20 h-1 bg-primary mx-auto mb-6"></div>
-                <p class="text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
+                <p class="text-gray-600 dark:text-gray-300 max-w-2xl mx-auto text-sm sm:text-base">
                     <span class="fa-content">تکنولوژی‌ها و ابزارهایی که با آنها کار می‌کنم</span>
                     <span class="en-content hidden">Technologies and tools I work with</span>
                 </p>
             </div>
             <div class="max-w-6xl mx-auto">
-                <div class="grid md:grid-cols-2 gap-12">
+                <div class="grid lg:grid-cols-2 gap-8 lg:gap-12">
                     <!-- Technical Skills -->
                     <div>
-                        <h3 class="text-2xl font-bold mb-8 text-center">
+                        <h3 class="text-xl sm:text-2xl font-bold mb-6 sm:mb-8 text-center">
                             <span class="fa-content">مهارت‌های تکنیکی</span>
                             <span class="en-content hidden">Technical Skills</span>
                         </h3>
-                        <div class="space-y-6">
+                        <div class="space-y-4 sm:space-y-6">
                             <div class="skill-item">
-                                <div class="flex justify-between mb-3">
-                                    <span class="font-semibold text-gray-700 dark:text-gray-300">
+                                <div class="flex justify-between mb-2 sm:mb-3">
+                                    <span class="font-semibold text-gray-700 dark:text-gray-300 text-sm sm:text-base">
                                         <span class="fa-content">بازاریابی دیجیتال</span>
                                         <span class="en-content hidden">Digital Marketing</span>
                                     </span>
-                                    <span class="text-primary font-bold">90%</span>
+                                    <span class="text-primary font-bold text-sm sm:text-base">90%</span>
                                 </div>
-                                <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-3">
-                                    <div class="skill-bar bg-gradient-to-r from-primary to-secondary h-3 rounded-full" style="width: 0%" data-width="90%"></div>
+                                <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2 sm:h-3">
+                                    <div class="skill-bar bg-gradient-to-r from-primary to-secondary h-2 sm:h-3 rounded-full" style="width: 0%" data-width="90%"></div>
                                 </div>
                             </div>
                             <div class="skill-item">
-                                <div class="flex justify-between mb-3">
-                                    <span class="font-semibold text-gray-700 dark:text-gray-300">
+                                <div class="flex justify-between mb-2 sm:mb-3">
+                                    <span class="font-semibold text-gray-700 dark:text-gray-300 text-sm sm:text-base">
                                         <span class="fa-content">طراحی وب</span>
                                         <span class="en-content hidden">Web Design</span>
                                     </span>
-                                    <span class="text-primary font-bold">85%</span>
+                                    <span class="text-primary font-bold text-sm sm:text-base">85%</span>
                                 </div>
-                                <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-3">
-                                    <div class="skill-bar bg-gradient-to-r from-primary to-secondary h-3 rounded-full" style="width: 0%" data-width="85%"></div>
+                                <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2 sm:h-3">
+                                    <div class="skill-bar bg-gradient-to-r from-primary to-secondary h-2 sm:h-3 rounded-full" style="width: 0%" data-width="85%"></div>
                                 </div>
                             </div>
                             <div class="skill-item">
-                                <div class="flex justify-between mb-3">
-                                    <span class="font-semibold text-gray-700 dark:text-gray-300">
+                                <div class="flex justify-between mb-2 sm:mb-3">
+                                    <span class="font-semibold text-gray-700 dark:text-gray-300 text-sm sm:text-base">
                                         <span class="fa-content">امنیت شبکه</span>
                                         <span class="en-content hidden">Network Security</span>
                                     </span>
-                                    <span class="text-primary font-bold">80%</span>
+                                    <span class="text-primary font-bold text-sm sm:text-base">80%</span>
                                 </div>
-                                <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-3">
-                                    <div class="skill-bar bg-gradient-to-r from-primary to-secondary h-3 rounded-full" style="width: 0%" data-width="80%"></div>
+                                <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2 sm:h-3">
+                                    <div class="skill-bar bg-gradient-to-r from-primary to-secondary h-2 sm:h-3 rounded-full" style="width: 0%" data-width="80%"></div>
                                 </div>
                             </div>
                         </div>
@@ -651,45 +767,45 @@
 
                     <!-- Languages -->
                     <div>
-                        <h3 class="text-2xl font-bold mb-8 text-center">
+                        <h3 class="text-xl sm:text-2xl font-bold mb-6 sm:mb-8 text-center">
                             <span class="fa-content">زبان‌ها</span>
                             <span class="en-content hidden">Languages</span>
                         </h3>
-                        <div class="space-y-6">
+                        <div class="space-y-4 sm:space-y-6">
                             <div class="skill-item">
-                                <div class="flex justify-between mb-3">
-                                    <span class="font-semibold text-gray-700 dark:text-gray-300">
+                                <div class="flex justify-between mb-2 sm:mb-3">
+                                    <span class="font-semibold text-gray-700 dark:text-gray-300 text-sm sm:text-base">
                                         <span class="fa-content">فارسی (زبان مادری)</span>
                                         <span class="en-content hidden">Persian (Native)</span>
                                     </span>
-                                    <span class="text-primary font-bold">100%</span>
+                                    <span class="text-primary font-bold text-sm sm:text-base">100%</span>
                                 </div>
-                                <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-3">
-                                    <div class="skill-bar bg-gradient-to-r from-primary to-secondary h-3 rounded-full" style="width: 0%" data-width="100%"></div>
+                                <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2 sm:h-3">
+                                    <div class="skill-bar bg-gradient-to-r from-primary to-secondary h-2 sm:h-3 rounded-full" style="width: 0%" data-width="100%"></div>
                                 </div>
                             </div>
                             <div class="skill-item">
-                                <div class="flex justify-between mb-3">
-                                    <span class="font-semibold text-gray-700 dark:text-gray-300">
+                                <div class="flex justify-between mb-2 sm:mb-3">
+                                    <span class="font-semibold text-gray-700 dark:text-gray-300 text-sm sm:text-base">
                                         <span class="fa-content">انگلیسی (حرفه‌ای)</span>
                                         <span class="en-content hidden">English (Professional)</span>
                                     </span>
-                                    <span class="text-primary font-bold">70%</span>
+                                    <span class="text-primary font-bold text-sm sm:text-base">70%</span>
                                 </div>
-                                <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-3">
-                                    <div class="skill-bar bg-gradient-to-r from-primary to-secondary h-3 rounded-full" style="width: 0%" data-width="70%"></div>
+                                <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2 sm:h-3">
+                                    <div class="skill-bar bg-gradient-to-r from-primary to-secondary h-2 sm:h-3 rounded-full" style="width: 0%" data-width="70%"></div>
                                 </div>
                             </div>
                             <div class="skill-item">
-                                <div class="flex justify-between mb-3">
-                                    <span class="font-semibold text-gray-700 dark:text-gray-300">
+                                <div class="flex justify-between mb-2 sm:mb-3">
+                                    <span class="font-semibold text-gray-700 dark:text-gray-300 text-sm sm:text-base">
                                         <span class="fa-content">آلمانی (مقدماتی)</span>
                                         <span class="en-content hidden">German (Basic)</span>
                                     </span>
-                                    <span class="text-primary font-bold">40%</span>
+                                    <span class="text-primary font-bold text-sm sm:text-base">40%</span>
                                 </div>
-                                <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-3">
-                                    <div class="skill-bar bg-gradient-to-r from-primary to-secondary h-3 rounded-full" style="width: 0%" data-width="40%"></div>
+                                <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2 sm:h-3">
+                                    <div class="skill-bar bg-gradient-to-r from-primary to-secondary h-2 sm:h-3 rounded-full" style="width: 0%" data-width="40%"></div>
                                 </div>
                             </div>
                         </div>
@@ -697,43 +813,43 @@
                 </div>
 
                 <!-- Tools & Technologies -->
-                <div class="mt-16">
-                    <h3 class="text-2xl font-bold mb-8 text-center">
+                <div class="mt-12 sm:mt-16">
+                    <h3 class="text-xl sm:text-2xl font-bold mb-6 sm:mb-8 text-center">
                         <span class="fa-content">ابزارها و تکنولوژی‌ها</span>
                         <span class="en-content hidden">Tools & Technologies</span>
                     </h3>
-                    <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
-                        <div class="card-hover text-center p-6 bg-gray-50 dark:bg-gray-800 rounded-lg">
-                            <i class="fab fa-google text-5xl text-red-500 mb-4"></i>
-                            <p class="font-semibold">Google Ads</p>
+                    <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6">
+                        <div class="card-hover text-center p-4 sm:p-6 bg-gray-50 dark:bg-gray-800 rounded-lg">
+                            <i class="fab fa-google text-3xl sm:text-5xl text-red-500 mb-3 sm:mb-4"></i>
+                            <p class="font-semibold text-xs sm:text-base">Google Ads</p>
                         </div>
-                        <div class="card-hover text-center p-6 bg-gray-50 dark:bg-gray-800 rounded-lg">
-                            <i class="fab fa-facebook text-5xl text-blue-600 mb-4"></i>
-                            <p class="font-semibold">Facebook Ads</p>
+                        <div class="card-hover text-center p-4 sm:p-6 bg-gray-50 dark:bg-gray-800 rounded-lg">
+                            <i class="fab fa-facebook text-3xl sm:text-5xl text-blue-600 mb-3 sm:mb-4"></i>
+                            <p class="font-semibold text-xs sm:text-base">Facebook Ads</p>
                         </div>
-                        <div class="card-hover text-center p-6 bg-gray-50 dark:bg-gray-800 rounded-lg">
-                            <i class="fas fa-chart-line text-5xl text-green-500 mb-4"></i>
-                            <p class="font-semibold">Analytics</p>
+                        <div class="card-hover text-center p-4 sm:p-6 bg-gray-50 dark:bg-gray-800 rounded-lg">
+                            <i class="fas fa-chart-line text-3xl sm:text-5xl text-green-500 mb-3 sm:mb-4"></i>
+                            <p class="font-semibold text-xs sm:text-base">Analytics</p>
                         </div>
-                        <div class="card-hover text-center p-6 bg-gray-50 dark:bg-gray-800 rounded-lg">
-                            <i class="fab fa-wordpress text-5xl text-blue-800 mb-4"></i>
-                            <p class="font-semibold">WordPress</p>
+                        <div class="card-hover text-center p-4 sm:p-6 bg-gray-50 dark:bg-gray-800 rounded-lg">
+                            <i class="fab fa-wordpress text-3xl sm:text-5xl text-blue-800 mb-3 sm:mb-4"></i>
+                            <p class="font-semibold text-xs sm:text-base">WordPress</p>
                         </div>
-                        <div class="card-hover text-center p-6 bg-gray-50 dark:bg-gray-800 rounded-lg">
-                            <i class="fab fa-html5 text-5xl text-orange-500 mb-4"></i>
-                            <p class="font-semibold">HTML5</p>
+                        <div class="card-hover text-center p-4 sm:p-6 bg-gray-50 dark:bg-gray-800 rounded-lg">
+                            <i class="fab fa-html5 text-3xl sm:text-5xl text-orange-500 mb-3 sm:mb-4"></i>
+                            <p class="font-semibold text-xs sm:text-base">HTML5</p>
                         </div>
-                        <div class="card-hover text-center p-6 bg-gray-50 dark:bg-gray-800 rounded-lg">
-                            <i class="fab fa-css3-alt text-5xl text-blue-500 mb-4"></i>
-                            <p class="font-semibold">CSS3</p>
+                        <div class="card-hover text-center p-4 sm:p-6 bg-gray-50 dark:bg-gray-800 rounded-lg">
+                            <i class="fab fa-css3-alt text-3xl sm:text-5xl text-blue-500 mb-3 sm:mb-4"></i>
+                            <p class="font-semibold text-xs sm:text-base">CSS3</p>
                         </div>
-                        <div class="card-hover text-center p-6 bg-gray-50 dark:bg-gray-800 rounded-lg">
-                            <i class="fab fa-js-square text-5xl text-yellow-500 mb-4"></i>
-                            <p class="font-semibold">JavaScript</p>
+                        <div class="card-hover text-center p-4 sm:p-6 bg-gray-50 dark:bg-gray-800 rounded-lg">
+                            <i class="fab fa-js-square text-3xl sm:text-5xl text-yellow-500 mb-3 sm:mb-4"></i>
+                            <p class="font-semibold text-xs sm:text-base">JavaScript</p>
                         </div>
-                        <div class="card-hover text-center p-6 bg-gray-50 dark:bg-gray-800 rounded-lg">
-                            <i class="fas fa-shield-alt text-5xl text-red-600 mb-4"></i>
-                            <p class="font-semibold">Security</p>
+                        <div class="card-hover text-center p-4 sm:p-6 bg-gray-50 dark:bg-gray-800 rounded-lg">
+                            <i class="fas fa-shield-alt text-3xl sm:text-5xl text-red-600 mb-3 sm:mb-4"></i>
+                            <p class="font-semibold text-xs sm:text-base">Security</p>
                         </div>
                     </div>
                 </div>
@@ -743,48 +859,48 @@
 
     <!-- Contact Section -->
     <section id="contact" class="section gradient-bg pt-20">
-        <div class="container mx-auto px-6 text-center">
+        <div class="container mx-auto px-4 sm:px-6 text-center">
             <div class="max-w-4xl mx-auto">
-                <h2 class="text-5xl font-bold mb-4 text-white">
+                <h2 class="text-3xl sm:text-5xl font-bold mb-4 text-white">
                     <span class="fa-content">تماس با من</span>
                     <span class="en-content hidden">Get In Touch</span>
                 </h2>
-                <div class="w-20 h-1 bg-white mx-auto mb-8"></div>
-                <p class="text-xl text-gray-300 mb-12">
+                <div class="w-20 h-1 bg-white mx-auto mb-6 sm:mb-8"></div>
+                <p class="text-lg sm:text-xl text-gray-300 mb-8 sm:mb-12 px-4">
                     <span class="fa-content">برای همکاری، مشاوره یا هر گونه سوال با من در تماس باشید</span>
                     <span class="en-content hidden">Feel free to reach out for collaboration, consultation or any questions</span>
                 </p>
-                <div class="grid md:grid-cols-3 gap-8 mb-12">
-                    <div class="card-hover glass-effect p-8 rounded-lg text-center">
-                        <i class="fas fa-envelope text-4xl text-primary mb-4"></i>
-                        <h3 class="text-xl font-bold text-white mb-2">Email</h3>
-                        <p class="text-gray-300">matinmok02@gmail.com</p>
+                <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 mb-8 sm:mb-12">
+                    <div class="card-hover glass-effect p-6 sm:p-8 rounded-lg text-center">
+                        <i class="fas fa-envelope text-3xl sm:text-4xl text-primary mb-3 sm:mb-4"></i>
+                        <h3 class="text-lg sm:text-xl font-bold text-white mb-2">Email</h3>
+                        <p class="text-gray-300 text-sm sm:text-base break-all">matinmok02@gmail.com</p>
                     </div>
-                    <div class="card-hover glass-effect p-8 rounded-lg text-center">
-                        <i class="fas fa-phone text-4xl text-primary mb-4"></i>
-                        <h3 class="text-xl font-bold text-white mb-2">
+                    <div class="card-hover glass-effect p-6 sm:p-8 rounded-lg text-center">
+                        <i class="fas fa-phone text-3xl sm:text-4xl text-primary mb-3 sm:mb-4"></i>
+                        <h3 class="text-lg sm:text-xl font-bold text-white mb-2">
                             <span class="fa-content">تلفن</span>
                             <span class="en-content hidden">Phone</span>
                         </h3>
-                        <p class="text-gray-300">+98 922 733 4601</p>
+                        <p class="text-gray-300 text-sm sm:text-base">+98 922 733 4601</p>
                     </div>
-                    <div class="card-hover glass-effect p-8 rounded-lg text-center">
-                        <i class="fas fa-globe text-4xl text-primary mb-4"></i>
-                        <h3 class="text-xl font-bold text-white mb-2">
+                    <div class="card-hover glass-effect p-6 sm:p-8 rounded-lg text-center sm:col-span-2 lg:col-span-1">
+                        <i class="fas fa-globe text-3xl sm:text-4xl text-primary mb-3 sm:mb-4"></i>
+                        <h3 class="text-lg sm:text-xl font-bold text-white mb-2">
                             <span class="fa-content">وب‌سایت</span>
                             <span class="en-content hidden">Website</span>
                         </h3>
-                        <p class="text-gray-300">brandiico.ir</p>
+                        <p class="text-gray-300 text-sm sm:text-base">brandiico.ir</p>
                     </div>
                 </div>
-                <div class="flex justify-center space-x-8 space-x-reverse">
-                    <a href="https://www.linkedin.com/in/matinmokhtar" target="_blank" class="card-hover glass-effect p-4 rounded-full text-white hover:text-primary transition-colors text-2xl">
+                <div class="flex justify-center space-x-6 sm:space-x-8 space-x-reverse">
+                    <a href="https://www.linkedin.com/in/matinmokhtar" target="_blank" class="card-hover glass-effect p-3 sm:p-4 rounded-full text-white hover:text-primary transition-colors text-xl sm:text-2xl">
                         <i class="fab fa-linkedin"></i>
                     </a>
-                    <a href="mailto:matinmok02@gmail.com" class="card-hover glass-effect p-4 rounded-full text-white hover:text-primary transition-colors text-2xl">
+                    <a href="mailto:matinmok02@gmail.com" class="card-hover glass-effect p-3 sm:p-4 rounded-full text-white hover:text-primary transition-colors text-xl sm:text-2xl">
                         <i class="fas fa-envelope"></i>
                     </a>
-                    <a href="https://brandiico.ir" target="_blank" class="card-hover glass-effect p-4 rounded-full text-white hover:text-primary transition-colors text-2xl">
+                    <a href="https://brandiico.ir" target="_blank" class="card-hover glass-effect p-3 sm:p-4 rounded-full text-white hover:text-primary transition-colors text-xl sm:text-2xl">
                         <i class="fas fa-globe"></i>
                     </a>
                 </div>
@@ -793,25 +909,25 @@
     </section>
 
     <!-- Contact FAB -->
-    <div class="contact-fab w-16 h-16 rounded-full flex items-center justify-center cursor-pointer" id="contactFab">
-        <i class="fas fa-comment-dots text-2xl text-white"></i>
+    <div class="contact-fab w-14 h-14 sm:w-16 sm:h-16 rounded-full flex items-center justify-center cursor-pointer" id="contactFab">
+        <i class="fas fa-comment-dots text-lg sm:text-2xl text-white"></i>
     </div>
 
     <!-- Contact Options -->
-    <div class="fixed bottom-24 right-8 flex flex-col space-y-3 transition-all duration-300 opacity-0 pointer-events-none" id="contactOptions">
-        <a href="https://wa.me/989227334601" target="_blank" class="w-12 h-12 bg-green-500 rounded-full flex items-center justify-center text-white hover:scale-110 transition-transform">
-            <i class="fab fa-whatsapp text-xl"></i>
+    <div class="fixed bottom-20 sm:bottom-24 right-5 sm:right-8 flex flex-col space-y-3 transition-all duration-300 opacity-0 pointer-events-none" id="contactOptions">
+        <a href="https://wa.me/989227334601" target="_blank" class="w-10 h-10 sm:w-12 sm:h-12 bg-green-500 rounded-full flex items-center justify-center text-white hover:scale-110 transition-transform">
+            <i class="fab fa-whatsapp text-lg sm:text-xl"></i>
         </a>
-        <a href="https://t.me/+989375249565" target="_blank" class="w-12 h-12 bg-blue-500 rounded-full flex items-center justify-center text-white hover:scale-110 transition-transform">
-            <i class="fab fa-telegram text-xl"></i>
+        <a href="https://t.me/+989375249565" target="_blank" class="w-10 h-10 sm:w-12 sm:h-12 bg-blue-500 rounded-full flex items-center justify-center text-white hover:scale-110 transition-transform">
+            <i class="fab fa-telegram text-lg sm:text-xl"></i>
         </a>
-        <a href="tel:+989227334601" class="w-12 h-12 bg-red-500 rounded-full flex items-center justify-center text-white hover:scale-110 transition-transform">
-            <i class="fas fa-phone text-xl"></i>
+        <a href="tel:+989227334601" class="w-10 h-10 sm:w-12 sm:h-12 bg-red-500 rounded-full flex items-center justify-center text-white hover:scale-110 transition-transform">
+            <i class="fas fa-phone text-lg sm:text-xl"></i>
         </a>
     </div>
 
     <script>
-        // Dark mode toggle (removed theme toggle button, but keeping dark mode detection)
+        // Dark mode toggle
         if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
             document.documentElement.classList.add('dark');
         }
@@ -849,9 +965,47 @@
         });
 
         // Mobile menu toggle
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
         const mobileMenu = document.getElementById('mobile-menu');
-        mobileMenu.addEventListener('click', () => {
-            // Add mobile menu functionality if needed
+        const closeMobileMenu = document.getElementById('close-mobile-menu');
+        const mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        });
+
+        closeMobileMenu.addEventListener('click', () => {
+            mobileMenu.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        });
+
+        mobileNavLinks.forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                const targetId = link.getAttribute('href');
+                const target = document.querySelector(targetId);
+                
+                mobileMenu.classList.remove('active');
+                document.body.style.overflow = 'auto';
+                
+                if (target) {
+                    setTimeout(() => {
+                        target.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }, 300);
+                }
+            });
+        });
+
+        // Close mobile menu on outside click
+        mobileMenu.addEventListener('click', (e) => {
+            if (e.target === mobileMenu) {
+                mobileMenu.classList.remove('active');
+                document.body.style.overflow = 'auto';
+            }
         });
 
         // Smooth scrolling for navigation links
@@ -977,6 +1131,14 @@
                 navbar.style.background = 'rgba(15, 23, 42, 0.9)';
             } else {
                 navbar.style.background = 'rgba(255, 255, 255, 0.1)';
+            }
+        });
+
+        // Handle window resize
+        window.addEventListener('resize', () => {
+            if (window.innerWidth >= 1024 && mobileMenu.classList.contains('active')) {
+                mobileMenu.classList.remove('active');
+                document.body.style.overflow = 'auto';
             }
         });
     </script>
